@@ -3,11 +3,13 @@ const morgan = require('morgan');
 const cors = require('cors');
 const http = require('http');
 
-const authMiddleware = require("./middleware/auth");
+const authMiddleware = require("./middlewares/authMiddleware");
 const router = express.Router();
 
 const userRoutes = require("./routes/userRoutes");
 const authRoutes = require("./routes/authRoutes");
+const resumeRoutes = require("./routes/resumeRoutes");
+
 
 //db
 const db = require("./config/db");
@@ -31,6 +33,8 @@ app.use(cors(corsOptions));
 //routes
 app.use("/users", userRoutes); 
 app.use("/auth", authRoutes);
+app.use("/resumes", resumeRoutes);
+
 
 //for testing
 app.use(router.get("/dashboard", authMiddleware(), (req, res) => {
