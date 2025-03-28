@@ -1,23 +1,27 @@
 const Resume = require("../models/students/resume");
 const User = require("../models/users");
 
-
-exports.createResume = async (req, res) => {
+exports.upsertResume = async (req, res) => {
     try {
         const { experience, skills, languages, additionalInfo } = req.body;
-        const userId = req.user.id; 
+        const userId = req.user.id;
 
-        const existingResume = await Resume.findOne({ where: { userId } });
-        if (existingResume) {
-            return res.status(400).json({ message: "Резюме уже существует" });
-        }
+        const [resume, created] = await Resume.upsert(
+            { userId, experience, skills, languages, additionalInfo },
+            { conflictFields: ['userId'], returning: true } 
+        );
 
-        const resume = await Resume.create({ userId, experience, skills, languages, additionalInfo });
-        res.status(201).json(resume);
+        res.status(created ? 201 : 200).json({
+            message: created ? "Резюме создано" : "Резюме обновлено",
+            resume,
+        });
     } catch (error) {
+        console.error("Ошибка в upsertResume:", error);
         res.status(500).json({ message: "Ошибка сервера", error });
     }
 };
+
+
 
 
 exports.getResume = async (req, res) => {
@@ -36,6 +40,28 @@ exports.getResume = async (req, res) => {
 };
 
 
+exports.getMyResume = async (req, res) => {
+    try {
+        
+        const userId = req.user?.id;
+        if (!userId) {
+            return res.status(400).json({ message: "Ошибка: пользователь не найден в req.user" });
+        }
+
+        const resume = await Resume.findOne({ where: { userId } });
+
+        if (!resume) {
+            return res.status(404).json({ message: "Резюме не найдено" });
+        }
+
+        res.json(resume);
+    } catch (error) {
+        console.error("Ошибка при получении резюме:", error);
+        res.status(500).json({ message: "Ошибка сервера", error: error.message });
+    }
+};
+
+
 exports.getResumes = async (req, res) => {
     try {
         const resumes = await Resume.findAll({ include: User });
@@ -43,28 +69,7 @@ exports.getResumes = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: "Ошибка сервера", error });
     }
-}
-
-
-exports.updateResume = async (req, res) => {
-    try {
-        const { id } = req.params;
-        const { experience, skills, languages, additionalInfo } = req.body;
-        const userId = req.user.id; // ID пользователя из токена
-
-        const resume = await Resume.findOne({ where: { id, userId } });
-
-        if (!resume) {
-            return res.status(404).json({ message: "Резюме не найдено или у вас нет доступа" });
-        }
-
-        await resume.update({ experience, skills, languages, additionalInfo });
-        res.json({ message: "Резюме обновлено", resume });
-    } catch (error) {
-        res.status(500).json({ message: "Ошибка сервера", error });
-    }
 };
-
 
 exports.deleteResume = async (req, res) => {
     try {

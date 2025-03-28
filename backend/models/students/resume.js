@@ -7,6 +7,7 @@ const Resume = db.define("Resume", {
     userId: {
         type: DataTypes.UUID,
         allowNull: false,
+        unique: true,
         references: {
             model: User,
             key: "id",

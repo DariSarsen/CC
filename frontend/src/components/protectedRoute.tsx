@@ -25,11 +25,10 @@ const ProtectedRoute = ({ requiredRole }: { requiredRole?: string }) => {
         console.log("Token found");
         axios.get("http://localhost:3000/auth/me", {
             headers: { Authorization: `Bearer ${token}` },
-            
         })
         .then((res) => {
-            
-            console.log("Role: ", res.data.role);
+            localStorage.setItem("user", JSON.stringify(res.data)); 
+
             if (requiredRole && res.data.role !== requiredRole) {
                 toast.error("У вас нет доступа!");
                 setAuthorized(false);

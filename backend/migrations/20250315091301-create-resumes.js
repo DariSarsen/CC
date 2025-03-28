@@ -8,6 +8,7 @@ module.exports = {
       userId: {
         type: Sequelize.UUID,
         allowNull: false,
+        unique: true,
         references: {
           model: "Users",
           key: "id",
