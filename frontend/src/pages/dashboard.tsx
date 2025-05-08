@@ -37,20 +37,25 @@ const Dashboard = () => {
 
       <nav className="mt-4">
         <ul className="space-y-2">
-        {user?.role === "student" ? (
+        {user?.role === "student" && (
             <li>
             <Link to="/myResume" className="text-blue-500">Мое резюме</Link>
           </li>
-          ) : null}
+          )}
           
-          {user?.role !== "company" ? (
+          {user?.role !== "company" && (
             <li>
               <Link to="/vacancies" className="text-blue-500">Вакансии</Link>
             </li>
-          ) : null}
+          )}
           {user?.role === "admin" && (
             <li>
               <Link to="/admin" className="text-red-500">Админ-панель</Link>
+            </li>
+          )}
+          {(user?.role === "career_center") || (user?.role === "company") && (
+            <li>
+              <Link to="/resumes" className="text-blue-500">Резюме студентов</Link>
             </li>
           )}
           <li>

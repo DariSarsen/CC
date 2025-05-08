@@ -1,4 +1,4 @@
-const Resume = require("../models/students/resume");
+const Resume = require("../models/student/resume");
 const User = require("../models/users");
 
 exports.upsertResume = async (req, res) => {
@@ -20,8 +20,6 @@ exports.upsertResume = async (req, res) => {
         res.status(500).json({ message: "Ошибка сервера", error });
     }
 };
-
-
 
 
 exports.getResume = async (req, res) => {

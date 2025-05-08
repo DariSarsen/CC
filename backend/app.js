@@ -9,6 +9,8 @@ const router = express.Router();
 const userRoutes = require("./routes/userRoutes");
 const authRoutes = require("./routes/authRoutes");
 const resumeRoutes = require("./routes/resumeRoutes");
+const vacancyRoutes = require("./routes/vacancyRoutes");
+
 
 
 //db
@@ -34,6 +36,7 @@ app.use(cors(corsOptions));
 app.use("/users", userRoutes); 
 app.use("/auth", authRoutes);
 app.use("/resumes", resumeRoutes);
+app.use("/vacancies", vacancyRoutes);
 
 
 //for testing
