@@ -99,3 +99,21 @@ exports.deleteVacancy = async (req, res) => {
     res.status(500).json({ message: "Ошибка сервера" });
   }
 };
+
+
+exports.getMyVacancies = async (req, res) => {
+  try {
+    const userId = req.user.id; // req.user заполняется из JWT
+    const role = req.user.role;
+
+    if (role !== "company") {
+      return res.status(403).json({ message: "Доступ запрещен" });
+    }
+
+    const vacancies = await Vacancy.findAll({ where: { userId: userId } });
+    res.json(vacancies);
+  } catch (error) {
+    console.error("Ошибка при получении вакансий компании", error);
+    res.status(500).json({ message: "Ошибка сервера" });
+  }
+};

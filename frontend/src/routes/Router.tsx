@@ -10,6 +10,8 @@ import ResumeListPage from "../pages/ResumeListPage";
 import ResumeDetailsPage from "../pages/ResumeDetailsPage"; 
 
 import VacancyFormPage from "../pages/VacancyFormPage"; 
+import VacancyDetailsPage from "../pages/VacancyDetailsPage"; 
+import VacancyListPage from "../pages/VacancyListPage"; 
 
 
 
@@ -21,6 +23,8 @@ const AppRouter = () => (
     {/* общие защищённые */}
     <Route element={<ProtectedRoute />}>
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/vacancies" element={<VacancyListPage />} />
+      <Route path="/vacancies/:id" element={<VacancyDetailsPage />} />
     </Route>
 
     {/* админ */}
@@ -40,10 +44,8 @@ const AppRouter = () => (
     </Route>
 
     <Route element={<ProtectedRoute requiredRole={"company"} />}>
-      {/* <Route path="/myVacancies" element={<VacancyListPage />} /> */}
       <Route path="/vacancies/new" element={<VacancyFormPage />} />
       <Route path="/vacancies/:id/edit" element={<VacancyFormPage />} />
-      {/* <Route path="/vacancies/:id" element={<VacancyDetailsPage />} /> */}
     </Route>
       
     <Route path="*" element={<Navigate to="/" />} />

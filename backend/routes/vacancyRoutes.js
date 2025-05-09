@@ -4,6 +4,7 @@ const vacancyController = require("../controllers/vacancyController");
 const authMiddleware = require("../middlewares/authMiddleware");
 
 router.post("/", authMiddleware("company"), vacancyController.createVacancy);
+router.get("/my", authMiddleware("company"), vacancyController.getMyVacancies);
 router.get("/", authMiddleware(), vacancyController.getVacancies);
 router.get("/:id", authMiddleware(), vacancyController.getVacancy);
 router.put("/:id", authMiddleware("company"), vacancyController.updateVacancy);
