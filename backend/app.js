@@ -10,7 +10,7 @@ const userRoutes = require("./routes/userRoutes");
 const authRoutes = require("./routes/authRoutes");
 const resumeRoutes = require("./routes/resumeRoutes");
 const vacancyRoutes = require("./routes/vacancyRoutes");
-
+const notificationRoutes = require("./routes/notificationRoutes");
 
 
 //db
@@ -31,13 +31,15 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
+app.use("/uploads", express.static("uploads"));
+
 
 //routes
 app.use("/users", userRoutes); 
 app.use("/auth", authRoutes);
 app.use("/resumes", resumeRoutes);
 app.use("/vacancies", vacancyRoutes);
-
+app.use("/notifications", notificationRoutes);
 
 //for testing
 app.use(router.get("/dashboard", authMiddleware(), (req, res) => {

@@ -13,6 +13,9 @@ import VacancyFormPage from "../pages/VacancyFormPage";
 import VacancyDetailsPage from "../pages/VacancyDetailsPage"; 
 import VacancyListPage from "../pages/VacancyListPage"; 
 
+import NotificationListPage from "../pages/NotificationListPage";
+import NotificationFormPage from "../pages/NotificationFormPage";
+import NotificationDetailsPage from "../pages/NotificationDetailsPage";
 
 
 const AppRouter = () => (
@@ -25,6 +28,8 @@ const AppRouter = () => (
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/vacancies" element={<VacancyListPage />} />
       <Route path="/vacancies/:id" element={<VacancyDetailsPage />} />
+      <Route path="/notifications" element={<NotificationListPage />} />
+      <Route path="/notifications/:id" element={<NotificationDetailsPage />} />
     </Route>
 
     {/* админ */}
@@ -48,6 +53,14 @@ const AppRouter = () => (
       <Route path="/vacancies/:id/edit" element={<VacancyFormPage />} />
     </Route>
       
+      
+    <Route element={<ProtectedRoute requiredRole={"career_center"} />}>
+      <Route path="/notifications/new" element={<NotificationFormPage />} />
+      <Route path="/notifications/:id/edit" element={<NotificationFormPage />} />
+    </Route>
+
+
+    
     <Route path="*" element={<Navigate to="/" />} />
   </Routes>
 );
