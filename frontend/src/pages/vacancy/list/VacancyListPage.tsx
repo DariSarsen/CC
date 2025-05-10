@@ -26,6 +26,7 @@ const VacancyListPage = () => {
     <div className="p-6 max-w-5xl mx-auto">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-3xl font-bold">Вакансии</h1>
+       
         {role === "company" && (
           <div className="flex gap-2">
             <Link to="/vacancies/new" className="btn btn-sm btn-primary">
