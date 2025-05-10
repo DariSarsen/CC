@@ -1,33 +1,8 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
-
-interface User {
-  id: string;
-  name: string;
-  role: "student" | "company" | "career_center" | "admin";
-}
+import { useCurrentUser } from "../../../hooks/useCurrentUser";
 
 const Dashboard = () => {
-  const [user, setUser] = useState<User | null>(null);
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        if (!token) {
-          toast.error("Вы не авторизованы");
-          return;
-        }
-        setUser(localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user") as string) : null);
-        
-      } catch (error) {
-        toast.error("Ошибка загрузки данных пользователя");
-      }
-    };
-
-    fetchUser();
-  }, []);
+  const { user } = useCurrentUser();
 
   return (
     <div className="container mx-auto p-4">
@@ -36,20 +11,17 @@ const Dashboard = () => {
 
       <nav className="mt-4">
         <ul className="space-y-2">
-
-          {((user?.role === "student") || (user?.role === "career_center") || (user?.role === "admin")) && (
+          {["student", "career_center", "admin"].includes(user?.role || "") && (
             <li>
               <Link to="/notifications" className="text-blue-500">Оповещении</Link>
             </li>
           )}
-
 
           {user?.role === "student" && (
             <li>
               <Link to="/myResume" className="text-blue-500">Мое резюме</Link>
             </li>
           )}
-          
 
           {user?.role === "admin" && (
             <li>
@@ -57,12 +29,12 @@ const Dashboard = () => {
             </li>
           )}
 
-          {((user?.role === "career_center") || (user?.role === "company")) && (
+          {["career_center", "company"].includes(user?.role || "") && (
             <li>
               <Link to="/resumes" className="text-blue-500">Резюме студентов</Link>
             </li>
           )}
-          
+
           <li>
             <Link to="/vacancies" className="text-blue-500">Вакансии</Link>
           </li>

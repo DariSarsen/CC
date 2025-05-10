@@ -1,51 +1,13 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Vacancy } from "../types/vacancy";
-import axios from "axios";
-import { toast } from "react-toastify";
-import { jwtDecode } from "jwt-decode";
-
-type JwtPayload = {
-  role: string;
-};
+import { useUserRole } from "../../../hooks/useUserRole";
+import { useVacancies } from "../../../hooks/vacancy/useVacancies";
 
 const VacancyListPage = () => {
-  const [vacancies, setVacancies] = useState<Vacancy[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [search, setSearch] = useState("");
   const [showMyVacancies, setShowMyVacancies] = useState(true);
-  const [role, setRole] = useState<string>("");
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) return;
-    const decoded: JwtPayload = jwtDecode(token);
-    setRole(decoded.role);
-  }, []);
-
-  useEffect(() => {
-    const fetchVacancies = async () => {
-      setIsLoading(true);
-      try {
-        const token = localStorage.getItem("token");
-        const headers = { Authorization: `Bearer ${token}` };
-
-        const url =
-          role === "company" && showMyVacancies
-            ? "http://localhost:3000/vacancies/my"
-            : "http://localhost:3000/vacancies";
-
-        const { data } = await axios.get(url, { headers });
-        setVacancies(data);
-      } catch (error) {
-        toast.error("Не удалось загрузить вакансии");
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    if (role) fetchVacancies();
-  }, [role, showMyVacancies]);
+  const role = useUserRole();
+  const { vacancies, isLoading } = useVacancies(role, showMyVacancies);
 
   const filteredVacancies = vacancies.filter((v) =>
     v.title.toLowerCase().includes(search.toLowerCase()) ||
@@ -70,7 +32,6 @@ const VacancyListPage = () => {
           </div>
         )}
       </div>
-
 
       <input
         type="text"

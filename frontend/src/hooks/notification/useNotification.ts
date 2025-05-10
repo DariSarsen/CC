@@ -3,8 +3,8 @@ import {
   getNotificationById,
   createNotification,
   updateNotification,
-} from "../services/notificationService";
-import { Notification } from "../types/notification";
+} from "../../services/notificationService";
+import { Notification } from "../../types/notification";
 import { toast } from "react-toastify";
 
 export const useNotification = (id?: string) => {

@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useVacancy } from "../hooks/useVacancy";
+import { useVacancy } from "../../../hooks/vacancy/useVacancy";
 
 const VacancyFormPage = () => {
   const { id } = useParams();

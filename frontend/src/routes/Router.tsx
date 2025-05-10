@@ -1,21 +1,21 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import ProtectedRoute from "../components/protectedRoute";
 
-import Home from "../pages/home";
-import Login from "../pages/login";
-import Dashboard from "../pages/dashboard";
-import CreateUser from "../pages/createUser";
-import ResumePage from "../pages/resumePage";               
-import ResumeListPage from "../pages/ResumeListPage";       
-import ResumeDetailsPage from "../pages/ResumeDetailsPage"; 
+import Home from "../pages/home/home/home";
+import Login from "../pages/auth/login/login";
+import Dashboard from "../pages/dashboard/dashboard/dashboard";
+import CreateUser from "../pages/admin/createUser/createUser";
+import ResumePage from "../pages/resume/list/resumePage";               
+import ResumeListPage from "../pages/resume/form/ResumeListPage";       
+import ResumeDetailsPage from "../pages/resume/details/ResumeDetailsPage"; 
 
-import VacancyFormPage from "../pages/VacancyFormPage"; 
-import VacancyDetailsPage from "../pages/VacancyDetailsPage"; 
-import VacancyListPage from "../pages/VacancyListPage"; 
+import VacancyFormPage from "../pages/vacancy/form/VacancyFormPage"; 
+import VacancyDetailsPage from "../pages/vacancy/details/VacancyDetailsPage"; 
+import VacancyListPage from "../pages/vacancy/list/VacancyListPage"; 
 
-import NotificationListPage from "../pages/NotificationListPage";
-import NotificationFormPage from "../pages/NotificationFormPage";
-import NotificationDetailsPage from "../pages/NotificationDetailsPage";
+import NotificationListPage from "../pages/notification/list/NotificationListPage";
+import NotificationFormPage from "../pages/notification/form/NotificationFormPage";
+import NotificationDetailsPage from "../pages/notification/details/NotificationDetailsPage";
 
 
 const AppRouter = () => (
@@ -53,13 +53,10 @@ const AppRouter = () => (
       <Route path="/vacancies/:id/edit" element={<VacancyFormPage />} />
     </Route>
       
-      
     <Route element={<ProtectedRoute requiredRole={"career_center"} />}>
       <Route path="/notifications/new" element={<NotificationFormPage />} />
       <Route path="/notifications/:id/edit" element={<NotificationFormPage />} />
     </Route>
-
-
     
     <Route path="*" element={<Navigate to="/" />} />
   </Routes>

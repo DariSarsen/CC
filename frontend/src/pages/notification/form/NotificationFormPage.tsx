@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useNotification } from "../hooks/useNotification";
+import { useNotification } from "../../../hooks/notification/useNotification";
 
 const NotificationFormPage = () => {
   const { id } = useParams();

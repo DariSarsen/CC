@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Vacancy } from "../types/vacancy";
-import { getVacancyById, createVacancy, updateVacancy } from "../services/vacancyService";
+import { Vacancy } from "../../types/vacancy";
+import { getVacancyById, createVacancy, updateVacancy } from "../../services/vacancyService";
 import { toast } from "react-toastify";
 
 export const useVacancy = (id?: string) => {

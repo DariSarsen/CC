@@ -1,18 +1,18 @@
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import { ResumeWithUser } from "../types/resume";
-import { fetchResumeById } from "../services/resumeService";
+import { ResumeWithUser } from "../../types/resume";
+import { fetchResumes } from "../../services/resumeService";
 
-export const useResumeById = (id: string) => {
-  const [resume, setResume] = useState<ResumeWithUser | null>(null);
+export const useResumes = () => {
+  const [resumes, setResumes] = useState<ResumeWithUser[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
       try {
         const token = localStorage.getItem("token");
-        const data = await fetchResumeById(id, token);
-        setResume(data);
+        const data = await fetchResumes(token);
+        setResumes(data);
       } catch (e) {
         toast.error("Ошибка при загрузке резюме");
         console.error(e);
@@ -20,7 +20,7 @@ export const useResumeById = (id: string) => {
         setLoading(false);
       }
     })();
-  }, [id]);
+  }, []);
 
-  return { resume, loading };
+  return { resumes, loading };
 };

@@ -1,7 +1,7 @@
 import { useState, useEffect, ChangeEvent } from "react";
 import { toast } from "react-toastify";
-import { Resume } from "../types/resume";
-import { getResume, updateResume } from "../services/resumeService";
+import { Resume } from "../../types/resume";
+import { getResume, updateResume } from "../../services/resumeService";
 
 export const useResume = () => {
     const [resume, setResume] = useState<Resume | null>(null);

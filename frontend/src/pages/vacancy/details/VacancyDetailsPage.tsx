@@ -1,35 +1,14 @@
-import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getVacancyById, deleteVacancy } from "../services/vacancyService";
-import { Vacancy } from "../types/vacancy";
+import { deleteVacancy } from "../../../services/vacancyService";
 import { toast } from "react-toastify";
+import { useCurrentUserId } from "../../../hooks/useCurrentUserId";
+import { useVacancyDetails } from "../../../hooks/vacancy/useVacancyDetails";
 
 const VacancyDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const [vacancy, setVacancy] = useState<Vacancy | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const token = localStorage.getItem("token");
-  let currentUserId = "";
-
-  if (token) {
-    try {
-      const payload = JSON.parse(atob(token.split(".")[1]));
-      currentUserId = payload.id;
-    } catch {
-      console.error("Не удалось декодировать токен");
-    }
-  }
-
-  useEffect(() => {
-    if (id) {
-      setIsLoading(true);
-      getVacancyById(id)
-        .then(setVacancy)
-        .catch(() => toast.error("Ошибка загрузки вакансии"))
-        .finally(() => setIsLoading(false));
-    }
-  }, [id]);
+  const currentUserId = useCurrentUserId();
+  const { vacancy, isLoading } = useVacancyDetails(id);
 
   const handleDelete = async () => {
     if (!id) return;
@@ -65,7 +44,6 @@ const VacancyDetailsPage = () => {
           <button onClick={handleDelete} className="btn btn-outline btn-error">Удалить</button>
         </div>
       )}
-
     </div>
   );
 };

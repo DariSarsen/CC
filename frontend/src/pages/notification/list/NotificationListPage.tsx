@@ -1,42 +1,28 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getNotifications } from "../services/notificationService";
-import { Notification } from "../types/notification";
-import { toast } from "react-toastify";
-import { jwtDecode } from "jwt-decode";
+import { useCurrentUser } from "../../../hooks/useCurrentUser";
+import { useNotifications } from "../../../hooks/notification/useNotifications";
 
-type JwtPayload = { role: string };
+const BASE_URL = "http://localhost:3000";
 
 const NotificationListPage = () => {
-  const [notifications, setNotifications] = useState<Notification[]>([]);
-  const [role, setRole] = useState<string>("");
-  const BASE_URL = "http://localhost:3000";
+  const { user } = useCurrentUser();
+  const { notifications, loading } = useNotifications();
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      const decoded: JwtPayload = jwtDecode(token);
-      setRole(decoded.role);
-    }
-
-    getNotifications()
-      .then(setNotifications)
-      .catch(() => toast.error("Не удалось загрузить оповещения"));
-  }, []);
+  if (loading) return <p className="text-center mt-10">Загрузка...</p>;
 
   return (
     <div className="p-6 max-w-5xl mx-auto">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-3xl font-bold">Оповещения</h1>
-        {role === "career_center" && (
+        {user?.role === "career_center" && (
           <Link to="/notifications/new" className="btn btn-sm btn-primary">
             Создать оповещение
           </Link>
         )}
       </div>
+
       <ul className="space-y-6">
         {notifications.map((n) => (
-          console.log(n),
           <li
             key={n.id}
             className="rounded-lg overflow-hidden shadow-md border relative"
@@ -48,9 +34,7 @@ const NotificationListPage = () => {
                   alt="notification"
                   className="w-full h-full object-cover"
                 />
-                {/* затемнение градиентом */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                {/* текст поверх изображения */}
                 <div className="absolute bottom-0 p-4 text-white">
                   <Link
                     to={`/notifications/${n.id}`}
@@ -82,7 +66,6 @@ const NotificationListPage = () => {
           </li>
         ))}
       </ul>
-
     </div>
   );
 };

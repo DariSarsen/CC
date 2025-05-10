@@ -1,4 +1,4 @@
-import { useResume } from "../hooks/useResume";
+import { useResume } from "../../../hooks/resume/useResume";
 
 const ResumePage = () => {
     const { resume, formData, isEditing, setIsEditing, handleChange, addItem, removeItem, saveResume, loading } = useResume();

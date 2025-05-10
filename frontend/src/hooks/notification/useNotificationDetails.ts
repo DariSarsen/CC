@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getNotificationById, deleteNotification } from "../services/notificationService";
-import { Notification } from "../types/notification";
+import { getNotificationById, deleteNotification } from "../../services/notificationService";
+import { Notification } from "../../types/notification";
 import { toast } from "react-toastify";
 import { jwtDecode } from "jwt-decode";
 

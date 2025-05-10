@@ -1,4 +1,4 @@
-import { useNotificationDetails } from "../hooks/useNotificationDetails";
+import { useNotificationDetails } from "../../../hooks/notification/useNotificationDetails";
 
 const NotificationDetailsPage = () => {
   const { notification, role, handleDelete, handleEdit } = useNotificationDetails();

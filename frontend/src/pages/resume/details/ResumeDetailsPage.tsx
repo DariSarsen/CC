@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
-import { useResumeById } from "../hooks/useResumeById";
+import { useResumeDetails } from "../../../hooks/resume/useResumeDetails";
 
 const ResumeDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
-  const { resume, loading } = useResumeById(id!);
+  const { resume, loading } = useResumeDetails(id!);
 
   if (loading) return <p className="p-6">Загрузка...</p>;
   if (!resume) return <p className="p-6 text-red-600">Резюме не найдено.</p>;

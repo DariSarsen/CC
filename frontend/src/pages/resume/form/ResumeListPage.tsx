@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useResumes } from "../hooks/useResumes";
-import { ResumeWithUser } from "../types/resume";
+import { useResumes } from "../../../hooks/resume/useResumes";
+import { ResumeWithUser } from "../../../types/resume";
 
 const ResumeListPage = () => {
   const { resumes, loading } = useResumes();
