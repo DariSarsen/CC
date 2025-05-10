@@ -57,11 +57,18 @@ exports.login = async (req, res) => {
         // Генерация токена
         const token = jwt.sign({ id: user.id, role: user.role }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
-        res.json({
-            token,
+        res
+        .cookie("token", token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production", // только HTTPS в проде
+            sameSite: "strict",
+            maxAge: 60 * 60 * 1000,
+        })
+        .json({
             user: { id: user.id, name: user.name, email: user.email, role: user.role },
-            message: "Успешный вход!"
+            message: "Успешный вход!",
         });
+
     } catch (error) {
         res.status(500).json({ message: "Ошибка сервера", error: error.message });
     }

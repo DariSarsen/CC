@@ -1,15 +1,12 @@
-import axios from "axios";
+import axiosInstance from "../api/axiosInstance"; 
 import { Resume, ResumeWithUser, defaultResume } from "../types/resume";
 
 const API_URL = "http://localhost:3000/resumes";
 
 // своё резюме
-export const getResume = async (token: string | null): Promise<Resume> => {
-  if (!token) throw new Error("Вы не авторизованы");
+export const getResume = async (): Promise<Resume> => {
   try {
-    const { data } = await axios.get<Resume>(`${API_URL}/me`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const { data } = await axiosInstance.get<Resume>(`${API_URL}/me`);  
     return data;
   } catch (err: any) {
     if (err.response?.status === 404) return defaultResume;
@@ -18,35 +15,18 @@ export const getResume = async (token: string | null): Promise<Resume> => {
 };
 
 // обновление
-export const updateResume = async (
-  token: string | null,
-  formData: Resume
-) => {
-  if (!token) throw new Error("Вы не авторизованы");
-  await axios.put(API_URL, formData, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
+export const updateResume = async (formData: Resume) => {
+  await axiosInstance.put(API_URL, formData);  // Без токена в заголовках
 };
 
 // все резюме для компаний/ЦК
-export const fetchResumes = async (
-  token: string | null
-): Promise<ResumeWithUser[]> => {
-  if (!token) throw new Error("Вы не авторизованы");
-  const { data } = await axios.get<ResumeWithUser[]>(API_URL, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
+export const fetchResumes = async (): Promise<ResumeWithUser[]> => {
+  const { data } = await axiosInstance.get<ResumeWithUser[]>(API_URL);  
   return data;
 };
 
 // одно резюме для компаний/ЦК
-export const fetchResumeById = async (
-  id: string,
-  token: string | null
-): Promise<ResumeWithUser> => {
-  if (!token) throw new Error("Вы не авторизованы");
-  const { data } = await axios.get<ResumeWithUser>(`${API_URL}/${id}`, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
+export const fetchResumeById = async (id: string): Promise<ResumeWithUser> => {
+  const { data } = await axiosInstance.get<ResumeWithUser>(`${API_URL}/${id}`);  
   return data;
 };

@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const http = require('http');
+const cookieParser = require("cookie-parser");
 
 const authMiddleware = require("./middlewares/authMiddleware");
 const router = express.Router();
@@ -13,6 +14,8 @@ const vacancyRoutes = require("./routes/vacancyRoutes");
 const notificationRoutes = require("./routes/notificationRoutes");
 
 
+
+
 //db
 const db = require("./config/db");
 
@@ -21,12 +24,13 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 
+app.use(cookieParser());
 app.use(express.json());
 app.use(morgan('dev'));
 const corsOptions = {
   origin: ['http://localhost:5173'],
-  methods: "*",
-  allowedHeaders: "*",
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true 
 };
 app.use(cors(corsOptions));

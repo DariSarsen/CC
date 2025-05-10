@@ -1,32 +1,21 @@
-import axios from "axios";
+import axiosInstance from "../api/axiosInstance";
 import { Notification } from "../types/notification";
 
 const API_URL = "http://localhost:3000/notifications";
 
-const getAuthHeaders = () => {
-  const token = localStorage.getItem("token");
-  if (!token) throw new Error("Вы не авторизованы");
-  return { Authorization: `Bearer ${token}` };
-};
-
 export const getNotifications = async (): Promise<Notification[]> => {
-  const { data } = await axios.get(API_URL, {
-    headers: getAuthHeaders(),
-  });
+  const { data } = await axiosInstance.get(API_URL); 
   return data;
 };
 
 export const getNotificationById = async (id: string): Promise<Notification> => {
-  const { data } = await axios.get(`${API_URL}/${id}`, {
-    headers: getAuthHeaders(),
-  });
+  const { data } = await axiosInstance.get(`${API_URL}/${id}`);
   return data;
 };
 
 export const createNotification = async (formData: FormData): Promise<Notification> => {
-  const { data } = await axios.post(API_URL, formData, {
+  const { data } = await axiosInstance.post(API_URL, formData, { 
     headers: {
-      ...getAuthHeaders(),
       "Content-Type": "multipart/form-data",
     },
   });
@@ -34,9 +23,8 @@ export const createNotification = async (formData: FormData): Promise<Notificati
 };
 
 export const updateNotification = async (id: string, formData: FormData): Promise<Notification> => {
-  const { data } = await axios.put(`${API_URL}/${id}`, formData, {
+  const { data } = await axiosInstance.put(`${API_URL}/${id}`, formData, { 
     headers: {
-      ...getAuthHeaders(),
       "Content-Type": "multipart/form-data",
     },
   });
@@ -44,7 +32,5 @@ export const updateNotification = async (id: string, formData: FormData): Promis
 };
 
 export const deleteNotification = async (id: string): Promise<void> => {
-  await axios.delete(`${API_URL}/${id}`, {
-    headers: getAuthHeaders(),
-  });
+  await axiosInstance.delete(`${API_URL}/${id}`); 
 };
