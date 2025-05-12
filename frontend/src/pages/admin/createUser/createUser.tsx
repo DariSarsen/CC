@@ -45,6 +45,16 @@ const CreateUser = () => {
           <option value="career_center">Центр карьеры</option>
           <option value="admin">Админ</option>
         </select>
+        <label className="flex items-center gap-2">
+          <input
+            type="checkbox"
+            name="notifyUser"
+            checked={formData.notifyUser}
+            onChange={handleChange}
+          />
+
+          Уведомить пользователя по email
+        </label>
         <button type="submit" className="w-full p-2 bg-blue-500 text-white rounded">
           Добавить пользователя
         </button>

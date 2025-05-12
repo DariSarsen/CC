@@ -9,12 +9,20 @@ export const useCreateUserForm = () => {
     email: "",
     password: "",
     role: "student",
+    notifyUser: false,
   });
 
   const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, type, value } = e.target;
+
+    const newValue = type === "checkbox" ? (e.target as HTMLInputElement).checked : value;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: newValue,
+    }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
