@@ -14,7 +14,6 @@ export interface Experience {
     proficiency: string;
   }
   
-  // «базовое» резюме студента (свой `/me`)
   export interface Resume {
     experience: Experience[];
     skills: Skill[];
@@ -22,7 +21,6 @@ export interface Experience {
     additionalInfo: string;
   }
   
-  // Резюме для компаний/ЦК — с id и данными пользователя
   export interface ResumeWithUser extends Resume {
     id: string;
     User: {

@@ -15,7 +15,6 @@ module.exports = (requiredRole = null) => {
             if (requiredRole && decoded.role !== requiredRole) {
                 return res.status(403).json({ message: "Доступ запрещен" });
             }
-            console.log("req.user");
             next();
         } catch (error) {
             console.error("error");

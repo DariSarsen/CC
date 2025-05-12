@@ -1,4 +1,3 @@
-// src/auth/useLoginForm.ts
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -14,8 +13,8 @@ export const useLoginForm = () => {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const data = await login(email, password); // теперь вызываем сервис
-      await fetchUser(); // загружаем user из cookie
+      const data = await login(email, password); 
+      await fetchUser(); 
 
       toast.success(data.message || "Успешно!");
       navigate("/dashboard");

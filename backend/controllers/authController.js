@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const User = require("../models/users");
+const { User } = require("../models");
 
 exports.getMe = async (req, res) => {
     try {
@@ -27,12 +27,10 @@ exports.login = async (req, res) => {
             return res.status(401).json({ message: "Неверный email или пароль." });
         }
 
-        // Проверка блокировки аккаунта
         if (user.blockedUntil && user.blockedUntil > new Date()) {
             return res.status(401).json({ message: `Аккаунт заблокирован до ${user.blockedUntil}` });
         }
 
-        // Проверка пароля
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
             const loginAttempts = user.loginAttempts + 1;
@@ -51,16 +49,14 @@ exports.login = async (req, res) => {
             }
         }
 
-        // Сброс попыток после успешного входа
         await user.update({ loginAttempts: 0, blockedUntil: null });
 
-        // Генерация токена
         const token = jwt.sign({ id: user.id, role: user.role }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
         res
         .cookie("token", token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production", // только HTTPS в проде
+            secure: process.env.NODE_ENV === "production",
             sameSite: "strict",
             maxAge: 60 * 60 * 1000,
         })

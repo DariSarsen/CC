@@ -38,7 +38,7 @@ export const useNotificationDetails = () => {
 
   return {
     notification,
-    role: user?.role ?? "", // передаём роль как строку
+    role: user?.role ?? "", 
     handleDelete,
     handleEdit,
   };

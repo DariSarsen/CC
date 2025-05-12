@@ -2,5 +2,5 @@ export interface User {
   id: string;
   name: string;
   email: string;
-  role: "student" | "company" | "career_center" | "admin"; // добавь свои роли при необходимости
+  role: "student" | "company" | "career_center" | "admin";
 }

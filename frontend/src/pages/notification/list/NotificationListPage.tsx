@@ -1,5 +1,3 @@
-// src/pages/notification/NotificationListPage.tsx
-
 import { Link } from "react-router-dom";
 import { useAuth } from "../../../contexts/AuthContext";
 import { useNotifications } from "../../../hooks/notification/useNotifications";

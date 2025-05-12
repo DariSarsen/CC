@@ -18,6 +18,9 @@ import NotificationListPage from "../pages/notification/list/NotificationListPag
 import NotificationFormPage from "../pages/notification/form/NotificationFormPage";
 import NotificationDetailsPage from "../pages/notification/details/NotificationDetailsPage";
 
+import MyResponsesPage from "../pages/response/MyResponsesPage";
+import VacancyResponsesPage from "../pages/response/VacancyResponsesPage";
+
 
 const AppRouter = () => (
   <Routes>
@@ -28,6 +31,9 @@ const AppRouter = () => (
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/vacancies" element={<VacancyListPage />} />
       <Route path="/vacancies/:id" element={<VacancyDetailsPage />} />
+    </Route>
+
+    <Route element={<ProtectedRoute requiredRole={["student", "career_center"]} />}>
       <Route path="/notifications" element={<NotificationListPage />} />
       <Route path="/notifications/:id" element={<NotificationDetailsPage />} />
     </Route>
@@ -38,6 +44,7 @@ const AppRouter = () => (
 
     <Route element={<ProtectedRoute requiredRole="student" />}>
       <Route path="/myResume" element={<ResumePage />} />
+      <Route path="/myResponses" element={<MyResponsesPage />} />
     </Route>
 
     <Route element={<ProtectedRoute requiredRole={["company", "career_center"]} />}>
@@ -48,6 +55,8 @@ const AppRouter = () => (
     <Route element={<ProtectedRoute requiredRole={"company"} />}>
       <Route path="/vacancies/new" element={<VacancyFormPage />} />
       <Route path="/vacancies/:id/edit" element={<VacancyFormPage />} />
+      <Route path="/vacancies/:vacancyId/responses" element={<VacancyResponsesPage />} />
+
     </Route>
       
     <Route element={<ProtectedRoute requiredRole={"career_center"} />}>
@@ -55,7 +64,7 @@ const AppRouter = () => (
       <Route path="/notifications/:id/edit" element={<NotificationFormPage />} />
     </Route>
     
-    <Route path="*" element={<Navigate to="/" />} />
+    {/* <Route path="*" element={<Navigate to="/" />} /> */}
   </Routes>
 );
 

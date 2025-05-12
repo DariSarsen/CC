@@ -10,7 +10,7 @@ export const useResumes = () => {
   useEffect(() => {
     const loadResumes = async () => {
       try {
-        const data = await fetchResumes(); // токен не нужен
+        const data = await fetchResumes(); 
         setResumes(data);
       } catch (e) {
         toast.error("Ошибка при загрузке резюме");

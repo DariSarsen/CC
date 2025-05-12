@@ -1,4 +1,3 @@
-// hooks/vacancy/useVacancies.ts
 import { useEffect, useState } from "react";
 import { Vacancy } from "../../types/vacancy";
 import { toast } from "react-toastify";

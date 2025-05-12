@@ -1,16 +1,19 @@
-// src/pages/vacancy/VacancyListPage.tsx
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../../contexts/AuthContext";
 import { useVacancies } from "../../../hooks/vacancy/useVacancies";
 import LoadingScreen from "../../../components/LoadingScreen";
+import VacancyResponseModal from "../../../components/VacancyResponseModal"; 
+
 
 const VacancyListPage = () => {
   const { user } = useAuth();                
   const role = user?.role ?? "";             
   const [search, setSearch] = useState("");
   const [showMyVacancies, setShowMyVacancies] = useState(true);
+
+  const [showModal, setShowModal] = useState(false);
 
   const { vacancies, isLoading } = useVacancies(showMyVacancies);
 
@@ -73,6 +76,23 @@ const VacancyListPage = () => {
               <p className="text-gray-700">
                 {vacancy.description.slice(0, 100)}...
               </p>
+                  
+              {user?.role === "company" && (
+                <Link to={`/vacancies/${vacancy.id}/responses`} className="text-blue-500">Посмотреть отклики</Link>
+              )}
+
+              {user?.role === "student" && (
+                <button className="btn btn-primary" onClick={() => setShowModal(true)}>
+                  Откликнуться
+                </button>
+              )}
+
+              {showModal && (
+                <VacancyResponseModal
+                  vacancyId={vacancy.id!}
+                  onClose={() => setShowModal(false)}
+                />
+              )}
             </li>
           ))}
         </ul>

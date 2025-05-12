@@ -12,16 +12,21 @@ const Dashboard = () => {
 
       <nav className="mt-4">
         <ul className="space-y-2">
-          {["student", "career_center", "admin"].includes(user?.role || "") && (
+          {["student", "career_center"].includes(user?.role || "") && (
             <li>
               <Link to="/notifications" className="text-blue-500">Оповещении</Link>
             </li>
           )}
 
           {user?.role === "student" && (
-            <li>
-              <Link to="/myResume" className="text-blue-500">Мое резюме</Link>
-            </li>
+            <>
+              <li>
+                <Link to="/myResume" className="text-blue-500">Мое резюме</Link>
+              </li>
+              <li>
+                <Link to="/myResponses" className="text-blue-500">Мое отклики</Link>
+              </li>
+            </>
           )}
 
           {user?.role === "admin" && (
