@@ -1,4 +1,10 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { getMe, logout as logoutRequest } from "../services/authService";
 import { User } from "../types/user";
 import { useNavigate } from "react-router-dom";
@@ -42,14 +48,25 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     fetchUser();
   }, []);
 
+  const authContextValue = useMemo(
+    () => ({
+      user,
+      isLoading,
+      fetchUser,
+      logout,
+    }),
+    [user, isLoading]
+  );
+
   return (
-    <AuthContext.Provider value={{ user, isLoading, fetchUser, logout }}>
+    <AuthContext.Provider value={authContextValue}>
       {children}
     </AuthContext.Provider>
   );
 };
 
 export const useAuth = (): AuthContextType => {
+
   const context = useContext(AuthContext);
   if (!context) {
     throw new Error("useAuth должен использоваться внутри AuthProvider");

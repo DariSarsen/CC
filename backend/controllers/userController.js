@@ -24,8 +24,6 @@ exports.createUser = async (req, res) => {
             role,
         });
         if (notifyUser) {
-            console.log("Отправка email пользователю:", email);
-            console.log("Пароль пользователя:", password);
             try {
                 await sendEmail({
                     to: email,

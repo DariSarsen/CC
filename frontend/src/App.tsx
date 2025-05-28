@@ -13,12 +13,10 @@ const App = () => {
         <BrowserRouter>
             <AuthProvider>
                 <AppRouter />
-            </AuthProvider>  
-            
-            <ChatWidget />  
-            <ToastContainer position="bottom-right" autoClose={3000} />
+                <ChatWidget />
+                <ToastContainer position="bottom-right" autoClose={3000} />
+            </AuthProvider> 
         </BrowserRouter>
-        
     );
     
 };

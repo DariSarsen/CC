@@ -7,6 +7,7 @@ import { useAuth } from "../.././contexts/AuthContext";
 export const useLoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  
   const navigate = useNavigate();
   const { fetchUser } = useAuth();
 
@@ -17,7 +18,7 @@ export const useLoginForm = () => {
       await fetchUser(); 
 
       toast.success(data.message || "Успешно!");
-      navigate("/dashboard");
+      navigate("/personal");
     } catch (err) {
       const errorMessage = (err as any)?.response?.data?.message || "Ошибка входа";
       toast.error(errorMessage);
