@@ -69,3 +69,16 @@ exports.login = async (req, res) => {
         res.status(500).json({ message: "Ошибка сервера", error: error.message });
     }
 };
+
+exports.logout = async (req, res) => {
+    try {
+        res.clearCookie("token", {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "strict",
+        });
+        res.json({ message: "Вы успешно вышли из системы." });
+    } catch (error) {
+        res.status(500).json({ message: "Ошибка сервера", error: error.message });
+    }
+};

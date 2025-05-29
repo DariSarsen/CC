@@ -10,5 +10,5 @@ export interface VacancyResponse {
   createdAt: string;
   updatedAt: string;
   User?: User;
-  vacancy?: Vacancy;
+  Vacancy?: Vacancy;
 }

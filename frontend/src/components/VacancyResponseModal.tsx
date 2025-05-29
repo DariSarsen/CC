@@ -1,4 +1,5 @@
 import { useVacancyResponseForm } from "../hooks/vacancyResponses/useVacancyResponseForm";
+import ModalPortal from "../components/ModalPortal"; 
 
 interface Props {
   vacancyId: string;
@@ -10,36 +11,48 @@ const VacancyResponseModal = ({ vacancyId, onClose }: Props) => {
     useVacancyResponseForm(vacancyId, onClose);
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50">
-      <div className="bg-white p-6 rounded-md shadow-md w-full max-w-lg">
-        <h2 className="text-xl font-bold mb-4">Отклик на вакансию</h2>
-        <form onSubmit={handleSubmit}>
-          <textarea
-            className="textarea textarea-bordered w-full h-32 mb-4"
-            placeholder="Сопроводительное письмо"
-            value={coverLetter}
-            onChange={(e) => setCoverLetter(e.target.value)}
-          />
-          <div className="flex justify-end gap-2">
-            <button
-              type="button"
-              className="btn btn-outline"
-              onClick={onClose}
-              disabled={loading}
-            >
-              Отмена
-            </button>
-            <button
-              type="submit"
-              className="btn btn-primary"
-              disabled={loading}
-            >
-              Отправить
-            </button>
-          </div>
-        </form>
+    <ModalPortal>
+      <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex justify-center items-center px-4">
+        <div className="bg-red-900 bg-opacity-30 backdrop-blur-md text-white p-8 rounded-3xl shadow-2xl w-full max-w-xl relative">
+          <button
+            className="absolute top-4 right-4 text-white hover:text-gray-200 text-2xl font-bold"
+            onClick={onClose}
+          >
+            ×
+          </button>
+
+          <h2 className="text-2xl font-bold mb-6 text-center">Отклик на вакансию</h2>
+
+          <form onSubmit={handleSubmit}>
+            <textarea
+              className="w-full h-32 p-4 rounded-xl bg-white text-black resize-none focus:outline-none focus:ring-2 focus:ring-red-500 mb-6"
+              placeholder="Сопроводительное письмо"
+              value={coverLetter}
+              onChange={(e) => setCoverLetter(e.target.value)}
+              required
+            />
+
+            <div className="flex justify-end gap-4">
+              <button
+                type="button"
+                onClick={onClose}
+                disabled={loading}
+                className="px-4 py-2 rounded-xl bg-white text-red-900 font-semibold hover:bg-red-400 hover:text-black transition-all duration-300"
+              >
+                Отмена
+              </button>
+              <button
+                type="submit"
+                disabled={loading}
+                className="px-4 py-2 rounded-xl bg-white text-green-700 font-semibold hover:bg-green-400 hover:text-black transition-all duration-300"
+              >
+                {loading ? "Отправка..." : "Отправить"}
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+    </ModalPortal>
   );
 };
 

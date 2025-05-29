@@ -36,5 +36,5 @@ export const useCreateUserForm = () => {
     }
   };
 
-  return { formData, handleChange, handleSubmit };
+  return { formData, setFormData, handleChange, handleSubmit };
 };

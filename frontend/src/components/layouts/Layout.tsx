@@ -42,7 +42,7 @@ const Layout = () => {
 
       {/* Сайдбар и контент */}
       <Sidebar />
-      <main className="flex-1 overflow-y-auto relative z-10">
+      <main className="flex-1 overflow-y-auto relative z-10 p-10">
         <Outlet />
       </main>
     </div>

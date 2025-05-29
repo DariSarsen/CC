@@ -7,5 +7,6 @@ router.post("/", auth(), controller.createResponse);
 router.get("/my", auth(), controller.getMyResponses);
 router.get("/vacancy/:vacancyId", auth(), controller.getResponsesByVacancy);
 router.put("/:responseId/status", auth(), controller.updateResponseStatus);
+router.delete("/:responseId", auth("student"), controller.deleteResponse);
 
 module.exports = router;

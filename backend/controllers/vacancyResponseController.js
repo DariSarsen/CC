@@ -73,3 +73,28 @@ exports.updateResponseStatus = async (req, res) => {
     res.status(500).json({ message: "Ошибка при обновлении статуса", error });
   }
 };
+
+
+exports.deleteResponse = async (req, res) => {
+  try {
+    const { responseId } = req.params;
+    const userId = req.user.id;
+
+    const response = await VacancyResponse.findByPk(responseId);
+
+    if (!response) {
+      return res.status(404).json({ message: "Отклик не найден" });
+    }
+
+    if (response.userId !== userId) {
+      return res.status(403).json({ message: "Нет прав на удаление этого отклика" });
+    }
+
+    await response.destroy();
+
+    res.json({ message: "Отклик успешно удалён" });
+  } catch (error) {
+    console.error("Ошибка при удалении отклика:", error);
+    res.status(500).json({ message: "Ошибка при удалении отклика", error });
+  }
+};

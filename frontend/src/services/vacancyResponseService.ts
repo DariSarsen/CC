@@ -1,7 +1,7 @@
 import axiosInstance from "../api/axiosInstance";
 import { VacancyResponse, VacancyResponseStatus } from "../types/vacancyResponse";
 
-const API_URL = "http://localhost:3000/responses";
+const API_URL = "/responses"; // относительный путь (лучше для продакшена)
 
 export const createVacancyResponse = async (
   vacancyId: string,
@@ -27,4 +27,8 @@ export const updateResponseStatus = async (
 ): Promise<VacancyResponse> => {
   const { data } = await axiosInstance.put(`${API_URL}/${responseId}/status`, { status });
   return data.response;
+};
+
+export const deleteResponse = async (responseId: string): Promise<void> => {
+  await axiosInstance.delete(`${API_URL}/${responseId}`);
 };
