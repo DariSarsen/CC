@@ -19,7 +19,7 @@ const NotificationListPage = () => {
         {user?.role === "career_center" && (
           <Link
             to="/notifications/new"
-            className="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:scale-105 transition-transform duration-300"
+            className="px-4 py-2 bg-linear-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:scale-105 transition-transform duration-300"
           >
             Создать оповещение
           </Link>
@@ -40,12 +40,12 @@ const NotificationListPage = () => {
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
 
-                <div className="absolute bottom-0 left-0 right-0 p-5 pt-4 bg-gradient-to-t from-black/80 via-black/70 to-transparent text-white z-10">
+                <div className="absolute bottom-0 left-0 right-0 p-5 pt-4 bg-linear-to-t from-black/80 via-black/70 to-transparent text-white z-10">
                   <h2 className="text-xl font-semibold">{n.title}</h2>
                   <p className="text-sm">{new Date(n.created_at || "").toLocaleString()}</p>
                 </div>
 
-                <div className="absolute inset-0 bg-black/50 backdrop-blur-sm opacity-0 group-hover:opacity-100 text-white p-4 transition-opacity duration-300 flex flex-col justify-center items-center text-center space-y-4 z-20">
+                <div className="absolute inset-0 bg-black/50 backdrop-blur-xs opacity-0 group-hover:opacity-100 text-white p-4 transition-opacity duration-300 flex flex-col justify-center items-center text-center space-y-4 z-20">
                   <p className="text-md">{n.content.slice(0, 200)}...</p>
                   <Link
                     to={`/notifications/${n.id}`}

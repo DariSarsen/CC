@@ -8,7 +8,7 @@ const Login = () => {
     <div className="min-h-screen flex relative overflow-hidden">
       {/* Центрированный вертикальный текст поверх всего */}
       <h1 className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-90 z-10 pointer-events-none">
-        <span className="text-[140px] font-bold font-bubble uppercase text-transparent bg-clip-text bg-gradient-to-b from-white from-50% to-red-800 to-50% drop-shadow-2xl leading-none">
+        <span className="text-[140px] font-bold font-bubble uppercase text-transparent bg-clip-text bg-linear-to-b from-white from-50% to-red-800 to-50% drop-shadow-2xl leading-none">
           SIGN IN
         </span>
       </h1>
@@ -37,7 +37,7 @@ const Login = () => {
               onChange={(e) => setEmail(e.target.value)}
               required
               placeholder=" "
-              className="peer w-full px-4 pt-6 pb-2 border-b-2 border-gray-300 focus:outline-none focus:border-red-600 transition-colors duration-300"
+              className="peer w-full px-4 pt-6 pb-2 border-b-2 border-gray-300 focus:outline-hidden focus:border-red-600 transition-colors duration-300"
             />
             <label
               htmlFor="email"
@@ -59,7 +59,7 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
               placeholder=" "
-              className="peer w-full px-4 pt-6 pb-2 border-b-2 border-gray-300 focus:outline-none focus:border-red-600 transition-colors duration-300"
+              className="peer w-full px-4 pt-6 pb-2 border-b-2 border-gray-300 focus:outline-hidden focus:border-red-600 transition-colors duration-300"
             />
             <label
               htmlFor="password"
@@ -74,7 +74,7 @@ const Login = () => {
           <div className="text-center">
             <button
               type="submit"
-              className="bg-red-700 text-white px-6 py-2 rounded shadow-md hover:bg-red-800 transition-all"
+              className="bg-red-700 text-white px-6 py-2 rounded-sm shadow-md hover:bg-red-800 transition-all"
             >
               Sign in
             </button>
@@ -82,7 +82,7 @@ const Login = () => {
           <div className="text-center">
             <a href="/auth/forgot-password"
               type="button"
-              className="text-gray-600 px-6 py-2 rounded transition-all hover:text-red-700 underline">
+              className="text-gray-600 px-6 py-2 rounded-sm transition-all hover:text-red-700 underline">
               Forgot your password?
             </a>
           </div>

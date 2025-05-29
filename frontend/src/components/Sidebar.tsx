@@ -18,7 +18,7 @@ const Sidebar = () => {
     <>
       {/* Кнопка открытия только на мобильных */}
       <button
-        className="md:hidden fixed top-4 left-4 z-50 text-3xl text-white bg-red-700 p-2 rounded"
+        className="md:hidden fixed top-4 left-4 z-50 text-3xl text-white bg-red-700 p-2 rounded-sm"
         onClick={() => setIsOpen(!isOpen)}
       >
         <FiMenu size={20}/>
@@ -32,7 +32,7 @@ const Sidebar = () => {
       )}
 
       {/* Sidebar */}
-      <div className={`shadow-2xl fixed top-0 left-0 w-80 bg-red-900 rounded-r-3xl bg-opacity-60 backdrop-blur-sm text-white z-40 transform transition-transform duration-300 ease-in-out 
+      <div className={`shadow-2xl fixed top-0 left-0 w-80 bg-red-900 rounded-r-3xl bg-opacity-60 backdrop-blur-xs text-white z-40 transform transition-transform duration-300 ease-in-out 
         ${isOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 md:static md:block`}>
         <div className="h-full flex flex-col overflow-y-auto">
           

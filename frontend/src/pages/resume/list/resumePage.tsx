@@ -11,7 +11,7 @@ const ResumePage = () => {
     return (
         <div className="container mx-auto p-4">
             <h1 className="text-xl font-bold mb-4">Личный кабинет</h1>
-            <button className="bg-blue-500 text-white px-4 py-2 rounded mb-4" onClick={() => setIsEditing(!isEditing)}>
+            <button className="bg-blue-500 text-white px-4 py-2 rounded-sm mb-4" onClick={() => setIsEditing(!isEditing)}>
                 {isEditing ? "Просмотр" : "Редактировать"}
             </button>
 
@@ -51,7 +51,7 @@ const ResumePage = () => {
                     <h2 className="text-lg font-semibold">Дополнительная информация</h2>
                     <textarea name="additionalInfo" value={formData?.additionalInfo} onChange={(e) => handleChange(e, "additionalInfo")} />
 
-                    <button className="bg-green-500 text-white px-4 py-2 rounded" onClick={saveResume}>Сохранить</button>
+                    <button className="bg-green-500 text-white px-4 py-2 rounded-sm" onClick={saveResume}>Сохранить</button>
                 </div>
             ) : (
                 <div>

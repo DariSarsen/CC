@@ -30,7 +30,7 @@ const VacancyResponsesPage = () => {
   };
 
   return (
-    <div className="max-w-4xl m-2 mx-auto my-16 p-8 bg-red-900 bg-opacity-80 backdrop-blur-sm text-white rounded-[40px] shadow-xl">
+    <div className="max-w-4xl m-2 mx-auto my-16 p-8 bg-red-900 bg-opacity-80 backdrop-blur-xs text-white rounded-[40px] shadow-xl">
       <h1 className="text-3xl font-bold mb-6 text-center">Отклики на вакансию</h1>
 
       {isLoading ? (

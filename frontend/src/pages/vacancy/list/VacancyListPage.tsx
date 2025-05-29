@@ -43,7 +43,7 @@ const VacancyListPage = () => {
           <div className="flex place-items-center gap-4 flex-wrap">
             <Link
               to="/vacancies/new"
-              className="px-5 py-2 rounded-lg bg-red-950 bg-opacity-30 backdrop-blur-sm hover:bg-opacity-70 transform transition duration-300"
+              className="px-5 py-2 rounded-lg bg-red-950 bg-opacity-30 backdrop-blur-xs hover:bg-opacity-70 transform transition duration-300"
             >
               Создать вакансию
             </Link>
@@ -67,7 +67,7 @@ const VacancyListPage = () => {
           placeholder="Поиск по названию или описанию..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full pl-12 pr-4 p-4 border-none text-lg bg-red-900 bg-opacity-50 backdrop-blur-sm rounded-lg outline-none focus:ring-1 focus:ring-white placeholder:text-red-200 transform transition-all duration-300 ease-in-out"
+          className="w-full pl-12 pr-4 p-4 border-none text-lg bg-red-900 bg-opacity-50 backdrop-blur-xs rounded-lg outline-hidden focus:ring-1 focus:ring-white placeholder:text-red-200 transform transition-all duration-300 ease-in-out"
         />
       </div>
 
@@ -80,7 +80,7 @@ const VacancyListPage = () => {
           {filteredVacancies.map((vacancy) => (
             <li
               key={vacancy.id}
-              className="p-6 rounded-2xl bg-red-900 bg-opacity-80 backdrop-blur-sm shadow-2xl transform transition-all duration-300"
+              className="p-6 rounded-2xl bg-red-900 bg-opacity-80 backdrop-blur-xs shadow-2xl transform transition-all duration-300"
             >
               <Link
                 to={`/vacancies/${vacancy.id}`}
@@ -100,7 +100,7 @@ const VacancyListPage = () => {
                 {hasRole(["company"]) && (
                   <Link
                     to={`/vacancies/${vacancy.id}/responses`}
-                      className="px-5 py-2 rounded-lg bg-red-950 bg-opacity-30 backdrop-blur-sm hover:bg-opacity-80 transform transition duration-300"
+                      className="px-5 py-2 rounded-lg bg-red-950 bg-opacity-30 backdrop-blur-xs hover:bg-opacity-80 transform transition duration-300"
                     >
                     Посмотреть отклики
                   </Link>

@@ -10,7 +10,7 @@ const ResumeDetailsPage = () => {
   if (!resume) return <p className="p-6 text-red-600">Резюме не найдено.</p>;
 
   return (
-    <div className="p-6 max-w-3xl mx-auto bg-white shadow-md rounded">
+    <div className="p-6 max-w-3xl mx-auto bg-white shadow-md rounded-sm">
       <h1 className="text-2xl font-bold mb-4">
         Резюме пользователя: {resume.User?.name ?? "Нет имени"}
       </h1>

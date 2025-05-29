@@ -20,11 +20,11 @@ export default function RoleSelect({ value, onChange }: {
       <label className="block font-semibold text-white">Role: *</label>
       <Listbox value={selectedRole} onChange={(role) => onChange(role.value)}>
         <div className="relative">
-          <Listbox.Button className="w-full p-4 text-left text-white text-lg bg-red-900 bg-opacity-20 backdrop-blur-sm rounded-lg outline-none focus:ring-2 focus:ring-white transition duration-300 ease-in-out">
+          <Listbox.Button className="w-full p-4 text-left text-white text-lg bg-red-900 bg-opacity-20 backdrop-blur-xs rounded-lg outline-hidden focus:ring-2 focus:ring-white transition duration-300 ease-in-out">
             {selectedRole.label}
             <FaChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-white" />
           </Listbox.Button>
-          <Listbox.Options className="absolute z-10 mt-2 w-full rounded-lg bg-red-900 bg-opacity-[85%] backdrop-blur-sm shadow-lg max-h-60 overflow-auto focus:outline-none text-white">
+          <Listbox.Options className="absolute z-10 mt-2 w-full rounded-lg bg-red-900 bg-opacity-[85%] backdrop-blur-xs shadow-lg max-h-60 overflow-auto focus:outline-hidden text-white">
             {roles.map((role, index) => (
               <Listbox.Option
                 key={role.value}

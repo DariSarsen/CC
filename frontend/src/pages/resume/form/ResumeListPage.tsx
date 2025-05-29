@@ -39,7 +39,7 @@ const ResumeListPage = () => {
         onChange={(e) => setSearch(e.target.value)}
       />
       {filtered.map((r) => (
-        <div key={r.id} className="border p-4 rounded shadow mb-4 bg-white">
+        <div key={r.id} className="border p-4 rounded-sm shadow-sm mb-4 bg-white">
             <h2 className="text-xl font-semibold">{r.User?.name ?? "Без имени"}</h2>
         
             <p>

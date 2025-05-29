@@ -50,7 +50,7 @@ const ChatWidget = () => {
                   <button
                     key={q}
                     onClick={() => handleSampleClick(q)}
-                    className="bg-gray-100 hover:bg-gray-200 rounded px-3 py-1 text-left w-full"
+                    className="bg-gray-100 hover:bg-gray-200 rounded-sm px-3 py-1 text-left w-full"
                   >
                     {q}
                   </button>
@@ -80,7 +80,7 @@ const ChatWidget = () => {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSend()}
-              className="flex-1 border rounded px-2 py-1 text-sm"
+              className="flex-1 border rounded-sm px-2 py-1 text-sm"
               disabled={loading}
             />
             <button

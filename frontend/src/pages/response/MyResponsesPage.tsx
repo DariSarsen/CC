@@ -18,7 +18,7 @@ const MyResponsesPage = () => {
 
   return (
     <>
-    <div className="max-w-4xl mx-auto p-10 bg-red-900 bg-opacity-80 backdrop-blur-sm text-white rounded-[40px] shadow-xl mb-36">
+    <div className="max-w-4xl mx-auto p-10 bg-red-900 bg-opacity-80 backdrop-blur-xs text-white rounded-[40px] shadow-xl mb-36">
       <h1 className="text-3xl font-bold mb-6 text-center">Мои отклики</h1>
 
       {isLoading ? (

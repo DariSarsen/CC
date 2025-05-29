@@ -35,7 +35,7 @@ const VacancyFormPage = () => {
         </p>
       </div>
 
-      <div className="max-w-3xl mx-auto m-2 my-20 p-10 bg-red-900 bg-opacity-60 backdrop-blur-sm shadow-2xl rounded-[50px] text-white space-y-10">
+      <div className="max-w-3xl mx-auto m-2 my-20 p-10 bg-red-900 bg-opacity-60 backdrop-blur-xs shadow-2xl rounded-[50px] text-white space-y-10">
         <h2 className="text-3xl font-semibold text-center capitalize">
           {isEdit ? "Обновление вакансии" : "Создание вакансии"}
         </h2>
@@ -56,7 +56,7 @@ const VacancyFormPage = () => {
                 placeholder="Введите название"
                 value={form.title}
                 onChange={handleChange}
-                className="w-full p-4 border-none text-lg bg-red-900 bg-opacity-20 backdrop-blur-sm rounded-lg outline-none focus:ring-1 focus:ring-white placeholder:text-red-200 transition-all duration-300 ease-in-out"
+                className="w-full p-4 border-none text-lg bg-red-900 bg-opacity-20 backdrop-blur-xs rounded-lg outline-hidden focus:ring-1 focus:ring-white placeholder:text-red-200 transition-all duration-300 ease-in-out"
                 required
               />
             </div>
@@ -72,7 +72,7 @@ const VacancyFormPage = () => {
                 placeholder="Описание вакансии"
                 value={form.description}
                 onChange={handleChange}
-                className="w-full p-4 h-32 border-none text-lg bg-red-900 bg-opacity-20 backdrop-blur-sm rounded-lg outline-none focus:ring-1 focus:ring-white placeholder:text-red-200 transition-all duration-300 ease-in-out resize-none"
+                className="w-full p-4 h-32 border-none text-lg bg-red-900 bg-opacity-20 backdrop-blur-xs rounded-lg outline-hidden focus:ring-1 focus:ring-white placeholder:text-red-200 transition-all duration-300 ease-in-out resize-none"
               />
             </div>
 
@@ -88,7 +88,7 @@ const VacancyFormPage = () => {
                 placeholder="Например: React, Python, Figma"
                 value={requirementsInput}
                 onChange={handleRequirementsChange}
-                className="w-full p-4 border-none text-lg bg-red-900 bg-opacity-20 backdrop-blur-sm rounded-lg outline-none focus:ring-1 focus:ring-white placeholder:text-red-200 transition-all duration-300 ease-in-out"
+                className="w-full p-4 border-none text-lg bg-red-900 bg-opacity-20 backdrop-blur-xs rounded-lg outline-hidden focus:ring-1 focus:ring-white placeholder:text-red-200 transition-all duration-300 ease-in-out"
               />
             </div>
 
@@ -104,7 +104,7 @@ const VacancyFormPage = () => {
                 placeholder="Город или онлайн"
                 value={form.location}
                 onChange={handleChange}
-                className="w-full p-4 border-none text-lg bg-red-900 bg-opacity-20 backdrop-blur-sm rounded-lg outline-none focus:ring-1 focus:ring-white placeholder:text-red-200 transition-all duration-300 ease-in-out"
+                className="w-full p-4 border-none text-lg bg-red-900 bg-opacity-20 backdrop-blur-xs rounded-lg outline-hidden focus:ring-1 focus:ring-white placeholder:text-red-200 transition-all duration-300 ease-in-out"
               />
             </div>
 
@@ -120,14 +120,14 @@ const VacancyFormPage = () => {
                 placeholder="Укажите диапазон"
                 value={form.salary}
                 onChange={handleChange}
-                className="w-full p-4 border-none text-lg bg-red-900 bg-opacity-20 backdrop-blur-sm rounded-lg outline-none focus:ring-1 focus:ring-white placeholder:text-red-200 transition-all duration-300 ease-in-out"
+                className="w-full p-4 border-none text-lg bg-red-900 bg-opacity-20 backdrop-blur-xs rounded-lg outline-hidden focus:ring-1 focus:ring-white placeholder:text-red-200 transition-all duration-300 ease-in-out"
               />
             </div>
 
             <div className="w-1/2 space-y-2">
               <button
                 type="submit"
-                className="w-full p-3 mt-6 border-none text-lg bg-red-950 bg-opacity-30 backdrop-blur-sm rounded-lg hover:bg-opacity-70 hover:scale-105 transform transition-all duration-300 ease-in-out"
+                className="w-full p-3 mt-6 border-none text-lg bg-red-950 bg-opacity-30 backdrop-blur-xs rounded-lg hover:bg-opacity-70 hover:scale-105 transform transition-all duration-300 ease-in-out"
               >
                 {isEdit ? "Сохранить изменения" : "Создать вакансию"}
               </button>

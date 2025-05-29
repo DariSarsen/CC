@@ -49,7 +49,7 @@ const VacancyDetailsPage = () => {
         <p className="text-xl font-light">Подробности по выбранной вакансии</p>
       </div>
 
-      <div className="max-w-4xl mx-auto m-2 my-10 p-10 bg-red-900 bg-opacity-70 backdrop-blur-sm shadow-2xl rounded-[50px] text-white space-y-8">
+      <div className="max-w-4xl mx-auto m-2 my-10 p-10 bg-red-900 bg-opacity-70 backdrop-blur-xs shadow-2xl rounded-[50px] text-white space-y-8">
         <h2 className="text-4xl font-semibold">{vacancy.title}</h2>
 
 
@@ -102,7 +102,7 @@ const VacancyDetailsPage = () => {
           <div className="flex justify-center">
             <button
               onClick={() => setShowModal(true)}
-              className="p-3 border-none text-lg bg-red-950 bg-opacity-30 backdrop-blur-sm rounded-lg hover:bg-opacity-70 hover:scale-105 transform transition-all duration-300 ease-in-out"
+              className="p-3 border-none text-lg bg-red-950 bg-opacity-30 backdrop-blur-xs rounded-lg hover:bg-opacity-70 hover:scale-105 transform transition-all duration-300 ease-in-out"
             >
               Откликнуться
             </button>

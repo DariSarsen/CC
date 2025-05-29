@@ -25,7 +25,7 @@ const VacancyResponseModal = ({ vacancyId, onClose }: Props) => {
 
           <form onSubmit={handleSubmit}>
             <textarea
-              className="w-full h-32 p-4 rounded-xl bg-white text-black resize-none focus:outline-none focus:ring-2 focus:ring-red-500 mb-6"
+              className="w-full h-32 p-4 rounded-xl bg-white text-black resize-none focus:outline-hidden focus:ring-2 focus:ring-red-500 mb-6"
               placeholder="Сопроводительное письмо"
               value={coverLetter}
               onChange={(e) => setCoverLetter(e.target.value)}
