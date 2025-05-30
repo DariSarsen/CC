@@ -18,7 +18,7 @@ const MyResponsesPage = () => {
 
   return (
     <>
-    <div className="max-w-4xl mx-auto p-10 bg-red-900 bg-opacity-80 backdrop-blur-xs text-white rounded-[40px] shadow-xl mb-36">
+    <div className="max-w-4xl mx-auto p-10 bg-red-900/80 backdrop-blur-xs text-white rounded-[40px] shadow-xl mb-36">
       <h1 className="text-3xl font-bold mb-6 text-center">Мои отклики</h1>
 
       {isLoading ? (
@@ -29,19 +29,19 @@ const MyResponsesPage = () => {
         <>
           {/* Статистика */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mb-6">
-            <div className="bg-white bg-opacity-20 p-3 rounded-lg border border-white border-opacity-20">
+            <div className="bg-white/20 p-3 rounded-lg border border-white border-opacity-20">
               <p className="text-lg font-bold">{stats.total}</p>
               <p className="text-sm">Всего</p>
             </div>
-            <div className="bg-yellow-500 bg-opacity-30 p-3 rounded-lg border border-white border-opacity-20">
+            <div className="bg-yellow-500/30 p-3 rounded-lg border border-white border-opacity-20">
               <p className="text-lg font-bold">{stats.pending}</p>
               <p className="text-sm">Ожидают</p>
             </div>
-            <div className="bg-green-600 bg-opacity-30 p-3 rounded-lg border border-white border-opacity-20">
+            <div className="bg-green-600/30 p-3 rounded-lg border border-white border-opacity-20">
               <p className="text-lg font-bold">{stats.accepted}</p>
               <p className="text-sm">Приняты</p>
             </div>
-            <div className="bg-red-600 bg-opacity-30 p-3 rounded-lg border border-white border-opacity-20">
+            <div className="bg-red-600/30 p-3 rounded-lg border border-white border-opacity-20">
               <p className="text-lg font-bold">{stats.rejected}</p>
               <p className="text-sm">Отклонены</p>
             </div>
@@ -56,7 +56,7 @@ const MyResponsesPage = () => {
                 className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
                   filterStatus === status
                     ? "bg-white text-red-900"
-                    : "bg-white bg-opacity-20 hover:bg-opacity-40"
+                    : "bg-white/20 hover:bg-opacity-40"
                 }`}
               >
                 {{
@@ -78,7 +78,7 @@ const MyResponsesPage = () => {
                 {responses.map((response) => (
                   <li
                     key={response.id}
-                    className="bg-white bg-opacity-10 p-5 rounded-xl shadow-md border border-white border-opacity-10"
+                    className="bg-white/10 p-5 rounded-xl shadow-md border border-white border-opacity-10"
                   >
                     <div className="flex justify-between items-center mb-2">
                       <h2 className="text-2xl font-semibold">

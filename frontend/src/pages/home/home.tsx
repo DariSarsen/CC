@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
 import { IoLogoYoutube, IoLogoInstagram, IoLogoFacebook } from "react-icons/io";
+import { useAuth } from "../../contexts/AuthContext";
 
 const Home = () => {
-    return (
+  const { user } = useAuth();
+
+  return (
       <>
 
       {/* Sticky Navbar — поверх фона */}
-      <header className="fixed top-0 left-0 w-full z-50 bg-red-900 bg-opacity-20 backdrop-blur-xs px-6 py-5 flex items-center justify-between">
+      <header className="fixed top-0 left-0 w-full z-50 bg-red-900/20 backdrop-blur-xs px-6 py-5 flex items-center justify-between">
       {/* Logo */}
       <div className="text-white font-bold text-xl flex items-center space-x-5">
         <svg width="50px" height="50px" viewBox="-12 -15 24 30"><path d="M 6 -15 Q -1 -5 -12 1 Q -11 2 -12 3 Q -2 1 2 2 Q 2 1 5 1 Q -4 -1 -9 1 Q 1 -4 6 -12 Q 5 -13 6 -15 M -4 -1 Q 2 -3 9 -1 Q 1 4 -6 12 Q -6 13.5 -6 15 Q 1 6 12 -1 Q 11 -2 12 -3 Q 5 -4 -1 -3 Q -1 -2 -4 -1" fill="#fff"></path></svg>
@@ -14,19 +17,26 @@ const Home = () => {
         <Link to="/personal" className="font-kadwa text-xl tracking-widest">LEGACY LINK</Link>
       </div>
 
-      {/* Sign In */}
-      <Link to="/login"
-        className="inline-block border-2 border-red-500 border-b-red-900 border-t-red-900 text-white px-10 py-2 rounded-full w-max 
-             hover:text-red-400 hover:border-red-900 
-             transition-all duration-300 ease-in-out text-base font-semibold tracking-widest">
-        К І Р У
-      </Link>
-
+      {user
+        ? ( 
+          <div className="text-white font-semibold text-lg mr-5">
+            {user.name}
+          </div>
+        )
+        : ( 
+          <Link to="/login"
+            className="inline-block border-2 border-red-500 border-b-red-900 border-t-red-900 text-white px-10 py-2 rounded-full w-max 
+                hover:text-red-300 hover:border-red-900 
+                transition-all duration-300 ease-in-out text-base font-semibold tracking-widest">
+            К І Р У
+          </Link>
+        )}
+      
     </header>
 
       {/* Фоновое изображение и контент */}
       <div className="relative min-h-screen bg-cover bg-center bg-no-repeat bg-[url('/images/alumni.png')] place-content-center">
-        <div className="absolute inset-0 bg-red-950 bg-opacity-70 z-0" />
+        <div className="absolute inset-0 bg-red-950/70 z-0" />
         <div className="relative z-10 flex flex-col items-center justify-center text-center text-white">
 
           <h2 className="font-italianno text-7xl mb-4 animate-fade-in-up delay-100">Narxoz Alumni</h2>

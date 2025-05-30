@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { useAccessControl } from "../hooks/useAccessControl";
 import { useAuth } from "../contexts/AuthContext";
 
 import { AiOutlineHome, AiOutlineUser, AiOutlineSetting, AiOutlineUserAdd, AiOutlineIdcard    } from "react-icons/ai";
@@ -11,8 +10,7 @@ import { TbMessageSearch } from "react-icons/tb";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { hasRole } = useAccessControl();
-  const { user, logout } = useAuth(); 
+  const { user, role, logout } = useAuth(); 
 
   return (
     <>
@@ -26,13 +24,13 @@ const Sidebar = () => {
 
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-40 z-30 md:hidden"
+          className="fixed inset-0 bg-black/40 z-30 md:hidden"
           onClick={() => setIsOpen(false)}
         />
       )}
 
       {/* Sidebar */}
-      <div className={`shadow-2xl fixed top-0 left-0 w-80 bg-red-900 rounded-r-3xl bg-opacity-60 backdrop-blur-xs text-white z-40 transform transition-transform duration-300 ease-in-out 
+      <div className={`shadow-2xl fixed top-0 left-0 w-80 bg-red-900/60 rounded-r-3xl backdrop-blur-xs text-white z-40 transform transition-transform duration-300 ease-in-out 
         ${isOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 md:static md:block`}>
         <div className="h-full flex flex-col overflow-y-auto">
           
@@ -64,7 +62,7 @@ const Sidebar = () => {
             </li>
 
             {/* Оповещении */}
-            {hasRole(["student", "career_center"]) && (
+            {(["student", "career_center"]).includes(role || "") && (
               <li className="flex items-center gap-3 hover:text-red-300 transition-colors">
                 <MdOutlineNewspaper  size={20}/>
                 <Link to="/notifications">Оповещении</Link>
@@ -72,7 +70,7 @@ const Sidebar = () => {
             )}
 
             {/* резюме отклики */}
-            {hasRole(["student"]) && (<>
+            {role === "student" && (<>
               <li className="flex items-center gap-3 hover:text-red-300 transition-colors">
                 <BsFilePost size={20}/>
                 <Link to="/myResume">Мое резюме</Link>
@@ -85,7 +83,7 @@ const Sidebar = () => {
             </>)}
             
             {/* новый юзер */}
-            {hasRole(["admin"]) && (
+            {role === "admin" && (
               <li className="flex items-center gap-3 hover:text-red-300 transition-colors">
                 <AiOutlineUserAdd size={20}/>
                 <Link to="/newUser">New user</Link>
@@ -93,7 +91,7 @@ const Sidebar = () => {
             )}
       
             {/* резюме студентов */}
-            {hasRole(["career_center", "company"]) && (
+            {(["career_center", "company"]).includes(role || "") && (
               <li className="flex items-center gap-3 hover:text-red-300 transition-colors">
                 <AiOutlineIdcard size={20}/>      
                 <Link to="/resumes">Резюме студентов</Link>

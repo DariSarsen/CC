@@ -12,8 +12,8 @@ const VacancyResponseModal = ({ vacancyId, onClose }: Props) => {
 
   return (
     <ModalPortal>
-      <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex justify-center items-center px-4">
-        <div className="bg-red-900 bg-opacity-30 backdrop-blur-md text-white p-8 rounded-3xl shadow-2xl w-full max-w-xl relative">
+      <div className="fixed inset-0 z-50 bg-black/50 flex justify-center items-center px-4">
+        <div className="bg-red-900/30 backdrop-blur-md text-white p-8 rounded-3xl shadow-2xl w-full max-w-xl relative">
           <button
             className="absolute top-4 right-4 text-white hover:text-gray-200 text-2xl font-bold"
             onClick={onClose}

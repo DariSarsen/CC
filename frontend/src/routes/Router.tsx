@@ -9,8 +9,8 @@ import Personal from "../pages/home/personal";
 import Dashboard from "../pages/admin/createUser/dashboard";
 import CreateUser from "../pages/admin/createUser/createUser";
 
-import ResumePage from "../pages/resume/list/resumePage";               
-import ResumeListPage from "../pages/resume/form/ResumeListPage";       
+import ResumePage from "../pages/resume/view-form/resumePage";               
+import ResumeListPage from "../pages/resume/list/ResumeListPage";       
 import ResumeDetailsPage from "../pages/resume/details/ResumeDetailsPage"; 
 
 import VacancyFormPage from "../pages/vacancy/form/VacancyFormPage"; 

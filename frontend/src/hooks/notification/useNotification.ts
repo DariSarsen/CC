@@ -59,7 +59,7 @@ export const useNotification = (id?: string) => {
         await createNotification(formData);
         toast.success("Оповещение создано");
       }
-    } catch {
+    } catch(error) {
       toast.error("Ошибка при сохранении");
     }
   };

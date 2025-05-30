@@ -8,7 +8,7 @@ const Login = () => {
     <div className="min-h-screen flex relative overflow-hidden">
       {/* Центрированный вертикальный текст поверх всего */}
       <h1 className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-90 z-10 pointer-events-none">
-        <span className="text-[140px] font-bold font-bubble uppercase text-transparent bg-clip-text bg-linear-to-b from-white from-50% to-red-800 to-50% drop-shadow-2xl leading-none">
+        <span className="text-[140px] font-bold font-bubble uppercase text-transparent bg-clip-text bg-linear-to-b from-white from-50% to-red-800 to-50% drop-shadow-lg/50 leading-none">
           SIGN IN
         </span>
       </h1>
@@ -24,7 +24,7 @@ const Login = () => {
 
       {/* Правая часть — форма входа */}
       <div className="w-1/2 bg-gray-300 flex flex-col items-center justify-center p-12 z-0">
-        <h2 className="text-7xl font-bold text-red-700 mb-12">Sign in</h2>
+        <h2 className="text-7xl font-bold text-red-700 mb-12 drop-shadow-sm/50">Sign in</h2>
 
         <form onSubmit={handleLogin} className="w-full max-w-sm space-y-6">
 

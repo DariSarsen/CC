@@ -11,7 +11,7 @@ const CreateUser = () => {
         <p className="text-xl font-light">Creating accounts for students, companies, and Career Center users</p>
       </div>
 
-      <div className="max-w-3xl mx-auto m-2 my-20 p-10 bg-red-900 bg-opacity-50 backdrop-blur-xs shadow-2xl rounded-[50px] text-white space-y-10">
+      <div className="max-w-3xl mx-auto m-2 my-20 p-10 bg-red-900/50 backdrop-blur-xs shadow-2xl rounded-[50px] text-white space-y-10">
       <h2 className="text-3xl font-semibold text-center capitalize">Добавить нового пользователя</h2>
       <form onSubmit={handleSubmit} className="space-y-6 flex flex-col items-center">
         
@@ -27,7 +27,7 @@ const CreateUser = () => {
             placeholder="Введите имя"
             value={formData.name}
             onChange={handleChange}
-            className="w-full p-4 border-none text-lg bg-red-900 bg-opacity-20 backdrop-blur-xs rounded-lg outline-hidden focus:ring-1 focus:ring-white placeholder:text-red-200 transform transition-all duration-300 ease-in-out"
+            className="w-full p-4 border-none text-lg bg-red-900/20 backdrop-blur-xs rounded-lg outline-hidden focus:ring-1 focus:ring-white placeholder:text-red-200 transform transition-all duration-300 ease-in-out"
             required
           />  
         </div> 
@@ -44,7 +44,7 @@ const CreateUser = () => {
             placeholder="Введите email"
             value={formData.email}
             onChange={handleChange}
-            className="w-full p-4 border-none text-lg bg-red-900 bg-opacity-20 backdrop-blur-xs rounded-lg outline-hidden focus:ring-1 focus:ring-white placeholder:text-red-200 transform transition-all duration-300 ease-in-out"
+            className="w-full p-4 border-none text-lg bg-red-900/20 backdrop-blur-xs rounded-lg outline-hidden focus:ring-1 focus:ring-white placeholder:text-red-200 transform transition-all duration-300 ease-in-out"
             required
           />  
         </div> 
@@ -61,7 +61,7 @@ const CreateUser = () => {
             id="password"
             value={formData.password}
             onChange={handleChange}
-            className="w-full p-4 border-none text-lg bg-red-900 bg-opacity-20 backdrop-blur-xs rounded-lg outline-hidden focus:ring-1 focus:ring-white placeholder:text-red-200 transform transition-all duration-300 ease-in-out"
+            className="w-full p-4 border-none text-lg bg-red-900/20 backdrop-blur-xs rounded-lg outline-hidden focus:ring-1 focus:ring-white placeholder:text-red-200 transform transition-all duration-300 ease-in-out"
             required
           />  
         </div> 
@@ -93,7 +93,7 @@ const CreateUser = () => {
 
 
         <button type="submit" 
-          className="w-1/2 p-3 border-none text-lg bg-red-950 bg-opacity-30 backdrop-blur-xs rounded-lg hover:bg-opacity-70 hover:scale-105 transform transition-all duration-300 ease-in-out">
+          className="w-1/2 p-3 border-none text-lg bg-red-950/30 backdrop-blur-xs rounded-lg hover:bg-opacity-70 hover:scale-105 transform transition-all duration-300 ease-in-out">
           Добавить пользователя
         </button>
       </form>

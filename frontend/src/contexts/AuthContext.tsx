@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 interface AuthContextType {
   user: User | null;
+  role: string | null;
   isLoading: boolean;
   fetchUser: () => Promise<void>;
   logout: () => Promise<void>;
@@ -27,7 +28,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     try {
       const userData = await getMe();
       setUser(userData);
-    } catch (err) {
+    } catch {
       setUser(null);
     } finally {
       setIsLoading(false);
@@ -44,19 +45,22 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  useEffect(() => {
-    fetchUser();
-  }, []);
+  const role = user?.role || null;
 
   const authContextValue = useMemo(
     () => ({
       user,
+      role,
       isLoading,
       fetchUser,
       logout,
     }),
-    [user, isLoading]
+    [user, role, isLoading]
   );
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
 
   return (
     <AuthContext.Provider value={authContextValue}>
@@ -66,7 +70,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 };
 
 export const useAuth = (): AuthContextType => {
-
   const context = useContext(AuthContext);
   if (!context) {
     throw new Error("useAuth должен использоваться внутри AuthProvider");

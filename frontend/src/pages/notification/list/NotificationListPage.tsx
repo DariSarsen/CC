@@ -3,12 +3,12 @@ import { useAuth } from "../../../contexts/AuthContext";
 import { useNotifications } from "../../../hooks/notification/useNotifications";
 import LoadingScreen from "../../../components/LoadingScreen";
 import { FiArrowRightCircle } from "react-icons/fi";
-
-const BASE_URL = "http://localhost:3000";
+import { AiFillPlusCircle } from "react-icons/ai";
 
 const NotificationListPage = () => {
   const { user } = useAuth();
   const { notifications, loading } = useNotifications();
+  const BASE_URL = "http://localhost:3000";
 
   if (loading) return <LoadingScreen />;
 
@@ -19,9 +19,10 @@ const NotificationListPage = () => {
         {user?.role === "career_center" && (
           <Link
             to="/notifications/new"
-            className="px-4 py-2 bg-linear-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:scale-105 transition-transform duration-300"
+            className="flex flex-row gap-2 items-center px-4 py-2 bg-red-950/50 text-white rounded-lg hover:bg-red-950/70 transition-transform duration-300"
           >
-            Создать оповещение
+            <AiFillPlusCircle size={20}/>
+            <p>Создать оповещение</p>
           </Link>
         )}
       </div>
@@ -56,7 +57,7 @@ const NotificationListPage = () => {
                 </div>
               </div>
             ) : (
-              <div className="flex flex-col bg-red-950 bg-opacity-60 backdrop-blur-md text-white p-6 min-h-64 rounded-xl">
+              <div className="flex flex-col bg-red-950/60 backdrop-blur-md text-white p-6 min-h-64 rounded-xl">
                 <h2 className="text-xl font-semibold break-words">{n.title}</h2>
                 <p className="text-sm mb-4">{new Date(n.created_at || "").toLocaleString()}</p>
                 <p className="text-md line-clamp-3">{n.content}</p>

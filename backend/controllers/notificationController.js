@@ -19,8 +19,19 @@ exports.createNotification = async (req, res) => {
   }
 
   try {
+    let imageUrl = null;
 
-    const imageUrl = req.file ? `/uploads/${req.file.filename}` : null;
+    if (req.file) {
+      const mimeType = req.file.mimetype;
+      const allowedTypes = ["image/jpeg", "image/png", "image/gif", "image/webp"];
+
+      if (!allowedTypes.includes(mimeType)) {
+        fs.unlinkSync(req.file.path);
+        return res.status(400).json({ error: "Файл должен быть изображением (jpg, png, gif, webp)" });
+      }
+
+      imageUrl = `/uploads/${req.file.filename}`;
+    }
 
     const notification = await Notification.create({ title, content, imageUrl });
 
@@ -29,6 +40,7 @@ exports.createNotification = async (req, res) => {
     res.status(500).json({ error: "Ошибка при создании оповещения" });
   }
 };
+
 
 
 exports.updateNotification = async (req, res) => {
@@ -47,6 +59,14 @@ exports.updateNotification = async (req, res) => {
     notification.content = content;
 
     if (req.file) {
+      const mimeType = req.file.mimetype;
+      const allowedTypes = ["image/jpeg", "image/png", "image/gif", "image/webp"];
+
+      if (!allowedTypes.includes(mimeType)) {
+        fs.unlinkSync(req.file.path);
+        return res.status(400).json({ error: "Файл должен быть изображением (jpg, png, gif, webp)" });
+      }
+
       if (notification.imageUrl) {
         const oldImagePath = path.join(__dirname, "..", notification.imageUrl);
         fs.unlink(oldImagePath, (err) => {
@@ -67,6 +87,7 @@ exports.updateNotification = async (req, res) => {
     res.status(500).json({ error: "Ошибка при обновлении оповещения" });
   }
 };
+
 
 
 

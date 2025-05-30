@@ -49,7 +49,7 @@ const VacancyDetailsPage = () => {
         <p className="text-xl font-light">Подробности по выбранной вакансии</p>
       </div>
 
-      <div className="max-w-4xl mx-auto m-2 my-10 p-10 bg-red-900 bg-opacity-70 backdrop-blur-xs shadow-2xl rounded-[50px] text-white space-y-8">
+      <div className="max-w-4xl mx-auto m-2 my-10 p-10 bg-red-900/70 backdrop-blur-xs shadow-2xl rounded-[50px] text-white space-y-8">
         <h2 className="text-4xl font-semibold">{vacancy.title}</h2>
 
 
@@ -61,7 +61,7 @@ const VacancyDetailsPage = () => {
         )}
 
         <div className="text-lg space-y-4">
-          <p className=" bg-green-700 border border-green-900 border-opacity-40 bg-opacity-30 rounded-lg px-4 py-2 w-max">
+          <p className=" bg-green-700 border border-green-900 border-opacity-40/30 rounded-lg px-4 py-2 w-max">
             {stats.total} отклик(а)
           </p>
           <p>
@@ -85,13 +85,13 @@ const VacancyDetailsPage = () => {
           <div className="flex justify-around gap-4 mt-6">
             <button
               onClick={handleEdit}
-              className="p-3 text-green-800 border-none text-xl bg-white bg-opacity-60 rounded-lg hover:bg-opacity-40 hover:bg-green-700 hover:text-white transition-all duration-500"
+              className="p-3 text-green-800 border-none text-xl bg-white/60 rounded-lg hover:bg-opacity-40 hover:bg-green-700 hover:text-white transition-all duration-500"
             >
               Редактировать
             </button>
             <button
               onClick={handleDelete}
-              className="p-3 text-red-800 border-none text-xl bg-white bg-opacity-60 rounded-lg hover:bg-opacity-70 hover:bg-red-700 hover:text-white transition-all duration-500"
+              className="p-3 text-red-800 border-none text-xl bg-white/60 rounded-lg hover:bg-opacity-70 hover:bg-red-700 hover:text-white transition-all duration-500"
             >
               Удалить
             </button>
@@ -102,7 +102,7 @@ const VacancyDetailsPage = () => {
           <div className="flex justify-center">
             <button
               onClick={() => setShowModal(true)}
-              className="p-3 border-none text-lg bg-red-950 bg-opacity-30 backdrop-blur-xs rounded-lg hover:bg-opacity-70 hover:scale-105 transform transition-all duration-300 ease-in-out"
+              className="p-3 border-none text-lg bg-red-950/30 backdrop-blur-xs rounded-lg hover:bg-opacity-70 hover:scale-105 transform transition-all duration-300 ease-in-out"
             >
               Откликнуться
             </button>
