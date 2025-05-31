@@ -12,3 +12,9 @@ export interface CreateUserPayload {
   role: string;
   notifyUser: boolean;
 }
+
+export interface UpdateUserPayload {
+  name?: string;
+  email?: string;
+  password?: string;
+}

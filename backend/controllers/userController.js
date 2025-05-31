@@ -2,6 +2,19 @@ const bcrypt = require("bcryptjs");
 const { User } = require("../models");
 const { sendEmail } = require("../utils/email");
 
+exports.getAllUsers = async (req, res) => {
+    try {
+        const users = await User.findAll({
+            attributes: ["id", "name", "email", "role", "createdAt"],
+            order: [["createdAt", "DESC"]],
+        });
+        res.json(users);
+    } catch (error) {
+        console.error("Ошибка при получении пользователей:", error.message);
+        res.status(500).json({ message: "Ошибка сервера" });
+    }
+};
+
 exports.createUser = async (req, res) => {
     try {
         const { name, email, password, role, notifyUser } = req.body;
@@ -40,5 +53,43 @@ exports.createUser = async (req, res) => {
     } catch (error) {
         console.error("Ошибка при создании пользователя:", error.message);
         res.status(500).json({ message: "Ошибка сервера", error: error.message });
+    }
+};
+
+exports.updateUser = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { name, email, password } = req.body;
+
+        const user = await User.findByPk(id);
+        if (!user) return res.status(404).json({ message: "Пользователь не найден" });
+
+        user.name = name || user.name;
+        user.email = email || user.email;
+        user.role = user.role;
+
+        if (password) {
+            user.password = await bcrypt.hash(password, 10);
+        }
+
+        await user.save();
+        res.json({ message: "Пользователь обновлен", user });
+    } catch (error) {
+        console.error("Ошибка при обновлении пользователя:", error.message);
+        res.status(500).json({ message: "Ошибка сервера" });
+    }
+};
+
+exports.deleteUser = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const user = await User.findByPk(id);
+        if (!user) return res.status(404).json({ message: "Пользователь не найден" });
+
+        await user.destroy();
+        res.json({ message: "Пользователь удален" });
+    } catch (error) {
+        console.error("Ошибка при удалении пользователя:", error.message);
+        res.status(500).json({ message: "Ошибка сервера" });
     }
 };

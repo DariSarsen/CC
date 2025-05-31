@@ -1,7 +1,7 @@
 // import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 
-const Dashboard = () => {
+const PersonalPage = () => {
   const { user } = useAuth();
 
   return (
@@ -18,4 +18,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default PersonalPage;

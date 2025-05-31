@@ -5,9 +5,9 @@ import Home from "../pages/home/home";
 import Login from "../pages/auth/login/login";
 import Personal from "../pages/home/personal";
 
-
-import Dashboard from "../pages/admin/createUser/dashboard";
-import CreateUser from "../pages/admin/createUser/createUser";
+import UserTablePage from "../pages/admin/userTable/UserTablePage";
+import CreateUser from "../components/СreateUserModal";
+import StatsPage from "../pages/stats/StatsPage";
 
 import ResumePage from "../pages/resume/view-form/resumePage";               
 import ResumeListPage from "../pages/resume/list/ResumeListPage";       
@@ -29,6 +29,7 @@ import Layout from "../components/layouts/Layout";
 const AccessAll = <AccessGuard />;
 const AccessStudent = <AccessGuard roles={["student"]} />;
 const AccessAdmin = <AccessGuard roles={["admin"]} />;
+const AccessAdminOrCenter = <AccessGuard roles={["admin", "career_center"]} />;
 const AccessCareerCenter = <AccessGuard roles={["career_center"]} />;
 const AccessStudentOrCenter = <AccessGuard roles={["student", "career_center"]} />;
 const AccessCompanyOrCenter = <AccessGuard roles={["company", "career_center"]} />;
@@ -54,8 +55,12 @@ const AppRouter = () => (
         </Route>
 
         <Route element={AccessAdmin}>
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/users" element={<UserTablePage />} />
             <Route path="/newUser" element={<CreateUser />} />
+        </Route>
+
+        <Route element={AccessAdminOrCenter}>
+            <Route path="/stats" element={<StatsPage />} />
         </Route>
 
         <Route element={AccessStudent}>

@@ -2,11 +2,13 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 
-import { AiOutlineHome, AiOutlineUser, AiOutlineSetting, AiOutlineUserAdd, AiOutlineIdcard    } from "react-icons/ai";
+import { AiOutlineHome, AiOutlineUser, AiOutlineSetting, AiOutlineIdcard } from "react-icons/ai";
+import { FaUsersCog } from "react-icons/fa";
 import { FiMenu, FiLogOut } from "react-icons/fi";
 import { MdOutlineWorkOutline, MdOutlineNewspaper  } from "react-icons/md";
 import { BsFilePost } from "react-icons/bs";
 import { TbMessageSearch } from "react-icons/tb";
+import { ImStatsBars } from "react-icons/im";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -61,6 +63,14 @@ const Sidebar = () => {
               <Link to="/vacancies">Вакансии</Link>
             </li>
 
+            {/* Статистика */}
+            {(["admin", "career_center"]).includes(role || "") && (
+              <li className="flex items-center gap-3 hover:text-red-300 transition-colors">
+                <ImStatsBars  size={20}/>
+                <Link to="/stats">Статистика</Link>
+              </li>
+            )}
+
             {/* Оповещении */}
             {(["student", "career_center"]).includes(role || "") && (
               <li className="flex items-center gap-3 hover:text-red-300 transition-colors">
@@ -85,8 +95,8 @@ const Sidebar = () => {
             {/* новый юзер */}
             {role === "admin" && (
               <li className="flex items-center gap-3 hover:text-red-300 transition-colors">
-                <AiOutlineUserAdd size={20}/>
-                <Link to="/newUser">New user</Link>
+                <FaUsersCog size={20}/>
+                <Link to="/users">Users</Link>
               </li>
             )}
       
