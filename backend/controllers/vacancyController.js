@@ -94,7 +94,6 @@ exports.deleteVacancy = async (req, res) => {
   }
 };
 
-
 exports.getMyVacancies = async (req, res) => {
   try {
     const userId = req.user.id; 

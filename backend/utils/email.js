@@ -6,7 +6,6 @@ const { email,
     refreshToken,
     redirectUri } = require('../credentials');
 
-
 const CLIENT_ID = clientId;
 const CLIENT_SECRET = clientSecret;
 const REDIRECT_URI = redirectUri;
@@ -41,7 +40,7 @@ const sendEmail = async ({ to, subject, text }) => {
     });
 
     const mailOptions = {
-      from: `AlumniCC <${SENDER_EMAIL}>`,
+      from: `Legacy Link <${SENDER_EMAIL}>`,
       to,
       subject,
       text,

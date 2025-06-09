@@ -41,7 +41,7 @@ const NotificationListPage = () => {
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
 
-                <div className="absolute bottom-0 left-0 right-0 p-5 pt-4 bg-linear-to-t from-black/80 via-black/70 to-transparent text-white z-10">
+                <div className="absolute bottom-0 left-0 right-0 p-5 bg-linear-to-t from-black via-black/70 to-transparent text-white z-10 text-shadow-lg/30">
                   <h2 className="text-xl font-semibold">{n.title}</h2>
                   <p className="text-sm">{new Date(n.created_at || "").toLocaleString()}</p>
                 </div>
@@ -58,7 +58,7 @@ const NotificationListPage = () => {
               </div>
             ) : (
               <div className="flex flex-col bg-red-950/60 backdrop-blur-md text-white p-6 min-h-64 rounded-xl">
-                <h2 className="text-xl font-semibold break-words">{n.title}</h2>
+                <h2 className="text-xl font-semibold break-words text-shadow-lg/10">{n.title}</h2>
                 <p className="text-sm mb-4">{new Date(n.created_at || "").toLocaleString()}</p>
                 <p className="text-md line-clamp-3">{n.content}</p>
                 <Link

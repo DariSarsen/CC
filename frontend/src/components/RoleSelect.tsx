@@ -16,7 +16,6 @@ export default function RoleSelect({ value, onChange }: {
 
   return (
     <div className="w-full">
-      <label className="block mb-1 text-sm">Роль *</label>
       <Listbox value={selectedRole} onChange={(role) => onChange(role.value)}>
         <div className="relative">
           <Listbox.Button

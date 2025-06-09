@@ -50,7 +50,6 @@ exports.getResponsesByVacancy = async (req, res) => {
   }
 };
 
-
 exports.updateResponseStatus = async (req, res) => {
   try {
     const { responseId } = req.params;
@@ -73,7 +72,6 @@ exports.updateResponseStatus = async (req, res) => {
     res.status(500).json({ message: "Ошибка при обновлении статуса", error });
   }
 };
-
 
 exports.deleteResponse = async (req, res) => {
   try {

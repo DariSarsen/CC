@@ -52,7 +52,6 @@ const VacancyDetailsPage = () => {
       <div className="max-w-4xl mx-auto m-2 my-10 p-10 bg-red-900/70 backdrop-blur-xs shadow-2xl rounded-[50px] text-white space-y-8">
         <h2 className="text-4xl font-semibold">{vacancy.title}</h2>
 
-
         {showModal && (
           <VacancyResponseModal
             vacancyId={vacancy.id!}

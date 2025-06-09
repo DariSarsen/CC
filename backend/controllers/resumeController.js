@@ -20,7 +20,6 @@ exports.upsertResume = async (req, res) => {
     }
 };
 
-
 exports.getResume = async (req, res) => {
     try {
         const { id } = req.params;
@@ -35,7 +34,6 @@ exports.getResume = async (req, res) => {
         res.status(500).json({ message: "Ошибка сервера", error });
     }
 };
-
 
 exports.getMyResume = async (req, res) => {
     try {
@@ -57,7 +55,6 @@ exports.getMyResume = async (req, res) => {
         res.status(500).json({ message: "Ошибка сервера", error: error.message });
     }
 };
-
 
 exports.getResumes = async (req, res) => {
     try {

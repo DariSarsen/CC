@@ -76,7 +76,7 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({ onClose, onCreated })
 
             {/* Роль */}
             <div>
-              <label className="block mb-1 text-sm">Роль</label>
+              <label className="block mb-1 text-sm">Роль *</label>
               <RoleSelect
                 value={formData.role}
                 onChange={(newValue) =>

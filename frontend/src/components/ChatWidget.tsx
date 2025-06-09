@@ -32,7 +32,7 @@ const ChatWidget = () => {
       )}
 
       {isOpen && (
-        <div className="fixed bottom-6 right-6 w-96 max-h-[85vh] bg-white/10 text-black backdrop-blur-sm shadow-2xl rounded-[30px] flex flex-col overflow-hidden z-50 border border-white/20">
+        <div className="fixed bottom-6 right-6 w-96 max-h-[85vh] bg-white/70 text-black backdrop-blur-xs shadow-2xl rounded-[30px] flex flex-col overflow-hidden z-50 border border-white/20">
           {/* Заголовок */}
           <div className="p-4 flex justify-between items-center border-b border-white/20 bg-white/90">
             <span className="text-lg font-semibold">Карьерный AI-чат</span>
@@ -48,12 +48,12 @@ const ChatWidget = () => {
           <div className="flex-1 px-4 py-3 overflow-y-auto text-sm space-y-3">
             {messages.length === 0 ? (
               <div className="space-y-2">
-                <p className="text-red-900">Попробуйте один из вопросов:</p>
+                <p className="text-red-950">Попробуйте один из вопросов:</p>
                 {sampleQuestions.map((q) => (
                   <button
                     key={q}
                     onClick={() => handleSampleClick(q)}
-                    className="block w-full text-left bg-red-900/20 hover:bg-red-900/10 rounded px-3 py-2 transition"
+                    className="block w-full text-left bg-red-800/20 hover:bg-red-900/10 rounded px-3 py-2 transition"
                   >
                     {q}
                   </button>
@@ -74,7 +74,7 @@ const ChatWidget = () => {
               ))
             )}
 
-            {loading && <div className="text-red-900 italic">AI печатает...</div>}
+            {loading && <div className="text-red-950 italic">AI печатает...</div>}
           </div>
 
           {/* Поле ввода */}

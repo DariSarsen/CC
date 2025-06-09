@@ -8,6 +8,8 @@ const vacancyResponseRoutes = require("./vacancyResponseRoutes");
 const notificationRoutes = require("./notificationRoutes");
 const aiChat = require("./aiChat");
 const statsRoutes = require("./statsRoutes");
+const contractRoutes = require("./contractRoutes");
+const companyProfileRoutes = require("./companyProfileRoutes");
 
 const router = express.Router();
 
@@ -19,4 +21,7 @@ router.use("/responses", vacancyResponseRoutes);
 router.use("/notifications", notificationRoutes);
 router.use("/aiChat", aiChat);
 router.use("/stats", statsRoutes);
+router.use("/contracts", contractRoutes);
+router.use("/com-profile", companyProfileRoutes);
+
 module.exports = router;

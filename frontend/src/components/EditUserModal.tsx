@@ -29,8 +29,9 @@ const EditUserModal = ({ user, onClose, onUpdated }: Props) => {
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="block mb-1 text-sm">Имя</label>
+              <label htmlFor="name" className="block mb-1 text-sm">Имя: </label>
               <input
+                id="name"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
@@ -40,8 +41,9 @@ const EditUserModal = ({ user, onClose, onUpdated }: Props) => {
             </div>
 
             <div>
-              <label className="block mb-1 text-sm">Email</label>
+              <label htmlFor="email" className="block mb-1 text-sm">Email: </label>
               <input
+                id="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
@@ -51,8 +53,9 @@ const EditUserModal = ({ user, onClose, onUpdated }: Props) => {
             </div>
 
             <div>
-              <label className="block mb-1 text-sm">Новый пароль (необязательно)</label>
+              <label htmlFor="password" className="block mb-1 text-sm">Новый пароль (необязательно):</label>
               <input
+                id="password"
                 name="password"
                 type="password"
                 value={formData.password}

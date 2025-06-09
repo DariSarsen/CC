@@ -1,8 +1,12 @@
+import { CompanyProfile } from "./companyProfile";
+
 export interface User {
   id: string;
   name: string;
   email: string;
   role: "student" | "company" | "career_center" | "admin";
+  photo?: string;
+  CompanyProfile?: CompanyProfile | null;
 }
 
 export interface CreateUserPayload {
@@ -18,3 +22,10 @@ export interface UpdateUserPayload {
   email?: string;
   password?: string;
 }
+
+export interface UpdateMePayload {
+  currentPassword: string;
+  newPassword: string;
+  confirmPassword: string;
+}
+

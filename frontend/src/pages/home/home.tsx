@@ -20,7 +20,9 @@ const Home = () => {
       {user
         ? ( 
           <div className="text-white font-semibold text-lg mr-5">
-            {user.name}
+            <Link to="/personal">{user.name}</Link>
+
+    
           </div>
         )
         : ( 
@@ -53,7 +55,6 @@ const Home = () => {
 
         </div>
       </div>
-
 
       <div className=" bg-linear-to-b from-red-900 to-red-950 ">
 
@@ -95,7 +96,7 @@ const Home = () => {
       {/* Footer */}
       <footer className="text-white text-center bg-[url('/images/footer.jpg')] bg-center bg-no-repeat w-full bg-cover relative  px-12 py-8 ">
         
-          <div className="absolute inset-0 bg-red-950 bg-opacity-70 z-0" />
+          <div className="absolute inset-0 bg-red-950/70 z-0" />
 
           <div className="relative z-10 flex flex-row items-center justify-between text-center text-whitegap-10">
 
@@ -147,7 +148,6 @@ const Home = () => {
           
 
           </div>
-
 
       </footer>
 

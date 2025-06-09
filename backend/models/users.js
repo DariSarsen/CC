@@ -10,6 +10,7 @@ const User = db.define("User", {
     type: DataTypes.ENUM("student", "company", "career_center", "admin"),
     allowNull: false 
   },
+  photo: { type: DataTypes.STRING, defaultValue: "/uploads/users/default.jpg"},
 
   loginAttempts: { type: DataTypes.INTEGER, defaultValue: 0 }, 
   blockedUntil: { type: DataTypes.DATE, allowNull: true, defaultValue: null } 

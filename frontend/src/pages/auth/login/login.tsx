@@ -37,7 +37,7 @@ const Login = () => {
               onChange={(e) => setEmail(e.target.value)}
               required
               placeholder=" "
-              className="peer w-full px-4 pt-6 pb-2 border-b-2 border-gray-300 focus:outline-hidden focus:border-red-600 transition-colors duration-300"
+              className="peer w-full px-4 pt-6 pb-2 border-b-2 border-gray-300 focus:outline-hidden bg-white/30 focus:border-red-600 transition-colors duration-300"
             />
             <label
               htmlFor="email"
@@ -49,7 +49,6 @@ const Login = () => {
             </label>
           </div>
 
-
           {/* Password */}
           <div className="relative w-full">
             <input
@@ -59,7 +58,7 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
               placeholder=" "
-              className="peer w-full px-4 pt-6 pb-2 border-b-2 border-gray-300 focus:outline-hidden focus:border-red-600 transition-colors duration-300"
+              className="peer w-full px-4 pt-6 pb-2 border-b-2 border-gray-300 focus:outline-hidden bg-white/30 focus:border-red-600 transition-colors duration-300"
             />
             <label
               htmlFor="password"
@@ -69,7 +68,6 @@ const Login = () => {
               Password
             </label>
           </div>
-
 
           <div className="text-center">
             <button

@@ -41,8 +41,6 @@ exports.createNotification = async (req, res) => {
   }
 };
 
-
-
 exports.updateNotification = async (req, res) => {
   const { id } = req.params;
   const { title, content } = req.body;
@@ -88,9 +86,6 @@ exports.updateNotification = async (req, res) => {
   }
 };
 
-
-
-
 exports.deleteNotification = async (req, res) => {
   const { id } = req.params;
 
@@ -118,7 +113,6 @@ exports.deleteNotification = async (req, res) => {
     res.status(500).json({ error: "Ошибка при удалении оповещения" });
   }
 };
-
 
 exports.getNotificationById = async (req, res) => {
   const { id } = req.params;

@@ -30,7 +30,7 @@ export const useCreateUserForm = () => {
     try {
       await createUser(formData);
       toast.success("Пользователь создан");
-      navigate("/");
+      navigate("/users");
     } catch (error: any) {
       toast.error(error.response?.data?.message || "Ошибка при создании пользователя");
     }

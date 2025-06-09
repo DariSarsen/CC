@@ -80,6 +80,49 @@ exports.updateUser = async (req, res) => {
     }
 };
 
+exports.updateMe = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const { currentPassword, newPassword, confirmPassword } = req.body;
+    const photoPath = req.file ? `/uploads/users/${req.file.filename}` : null;
+
+    const user = await User.findByPk(userId);
+    if (!user) {
+      return res.status(404).json({ message: "Пользователь не найден" });
+    }
+
+    if (currentPassword || newPassword || confirmPassword) {
+      if (!currentPassword || !newPassword || !confirmPassword) {
+        return res.status(400).json({
+          message: "Для смены пароля необходимо заполнить все три поля: текущий, новый и подтверждение.",
+        });
+      }
+
+      const isMatch = await bcrypt.compare(currentPassword, user.password);
+      if (!isMatch) {
+        return res.status(400).json({ message: "Неверный текущий пароль" });
+      }
+
+      if (newPassword !== confirmPassword) {
+        return res.status(400).json({ message: "Новый пароль и подтверждение не совпадают" });
+      }
+
+      const hashedPassword = await bcrypt.hash(newPassword, 10);
+      user.password = hashedPassword;
+    }
+
+    if (photoPath) {
+      user.photo = photoPath;
+    }
+
+    await user.save();
+    res.json({ message: "Профиль успешно обновлён" });
+  } catch (error) {
+    console.error("Ошибка при обновлении профиля:", error.message);
+    res.status(500).json({ message: "Ошибка сервера" });
+  }
+};
+
 exports.deleteUser = async (req, res) => {
     try {
         const { id } = req.params;

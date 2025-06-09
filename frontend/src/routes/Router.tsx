@@ -6,7 +6,6 @@ import Login from "../pages/auth/login/login";
 import Personal from "../pages/home/personal";
 
 import UserTablePage from "../pages/admin/userTable/UserTablePage";
-import CreateUser from "../components/СreateUserModal";
 import StatsPage from "../pages/stats/StatsPage";
 
 import ResumePage from "../pages/resume/view-form/resumePage";               
@@ -24,6 +23,13 @@ import NotificationDetailsPage from "../pages/notification/details/NotificationD
 import MyResponsesPage from "../pages/response/MyResponsesPage";
 import VacancyResponsesPage from "../pages/response/VacancyResponsesPage";
 
+import ContractsPage from "../pages/contract/ContractsPage";
+import ContractCreatePage from "../pages/contract/ContractCreatePage";
+
+import CompanyProfileDetailPage from "../pages/com-profile/details/CompanyProfileDetailPage";
+import CompanyProfileFormPage from "../pages/com-profile/form/CompanyProfileFormPage";
+import CompanyProfilesListPage from "../pages/com-profile/list/CompanyProfilesListPage";
+
 import Layout from "../components/layouts/Layout";
 
 const AccessAll = <AccessGuard />;
@@ -34,7 +40,6 @@ const AccessCareerCenter = <AccessGuard roles={["career_center"]} />;
 const AccessStudentOrCenter = <AccessGuard roles={["student", "career_center"]} />;
 const AccessCompanyOrCenter = <AccessGuard roles={["company", "career_center"]} />;
 const AccessCompany = <AccessGuard roles={["company"]} />;
-
 
 const AppRouter = () => (
   <Routes>
@@ -47,6 +52,8 @@ const AppRouter = () => (
             <Route path="/personal" element={<Personal />} />
             <Route path="/vacancies" element={<VacancyListPage />} />
             <Route path="/vacancies/:id" element={<VacancyDetailsPage />} />
+            <Route path="/contracts" element={<ContractsPage />} />
+            <Route path="/company/:id" element={<CompanyProfileDetailPage />} />
         </Route>
 
         <Route element={AccessStudentOrCenter}>
@@ -56,7 +63,6 @@ const AppRouter = () => (
 
         <Route element={AccessAdmin}>
             <Route path="/users" element={<UserTablePage />} />
-            <Route path="/newUser" element={<CreateUser />} />
         </Route>
 
         <Route element={AccessAdminOrCenter}>
@@ -66,6 +72,8 @@ const AppRouter = () => (
         <Route element={AccessStudent}>
             <Route path="/myResume" element={<ResumePage />} />
             <Route path="/myResponses" element={<MyResponsesPage />} />
+            
+            <Route path="/contracts/create" element={<ContractCreatePage />} />
         </Route>
 
         <Route element={AccessCompanyOrCenter}>
@@ -77,16 +85,20 @@ const AppRouter = () => (
             <Route path="/vacancies/new" element={<VacancyFormPage />} />
             <Route path="/vacancies/:id/edit" element={<VacancyFormPage />} />
             <Route path="/vacancies/:vacancyId/responses" element={<VacancyResponsesPage />} />
+
+            <Route path="/company-profile/edit" element={<CompanyProfileFormPage />} />
         </Route>
 
         <Route element={AccessCareerCenter}>
             <Route path="/notifications/new" element={<NotificationFormPage />} />
             <Route path="/notifications/:id/edit" element={<NotificationFormPage />} />
+            <Route path="/companies" element={<CompanyProfilesListPage />} />
+
         </Route>
 
     </Route>
 
-    <Route path="*" element={<Navigate to="/" />} />
+    {/* <Route path="*" element={<Navigate to="/" />} /> */}
   </Routes>
 
 );

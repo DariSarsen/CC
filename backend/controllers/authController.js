@@ -4,7 +4,7 @@ const { User } = require("../models");
 
 exports.getMe = async (req, res) => {
     try {
-        const user = await User.findByPk(req.user.id, { attributes: ["id", "name", "email", "role"] });
+        const user = await User.findByPk(req.user.id, { attributes: ["id", "name", "email", "role", "photo"] });
         if (!user) {
             return res.status(404).json({ message: "Пользователь не найден" });
         }
