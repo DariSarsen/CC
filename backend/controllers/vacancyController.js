@@ -1,14 +1,31 @@
-const { Vacancy, User }= require("../models");
+const { Vacancy, User, CompanyProfile }= require("../models");
 
 exports.getVacancies = async (req, res) => {
   try {
     const limit = req.query.limit ? parseInt(req.query.limit) : undefined;
 
     const vacancies = await Vacancy.findAll({
-      include: { model: User, attributes: ["id", "name", "email", "photo"] },
+      include: [
+        {
+          model: User,
+          attributes: ["id", "name", "email", "photo"],
+          include: [
+            {
+              model: CompanyProfile,
+              attributes: [
+                "companyName",
+                "address",
+                "phone",
+                "canProvideInternship",
+              ],
+            },
+          ],
+        },
+      ],
       order: [["createdAt", "DESC"]],
       ...(limit ? { limit } : {}),
     });
+
     res.json(vacancies);
   } catch (error) {
     console.error("Ошибка при получении списка вакансий:", error);
@@ -43,7 +60,19 @@ exports.createVacancy = async (req, res) => {
 exports.getVacancy = async (req, res) => {
   try {
     const vacancy = await Vacancy.findByPk(req.params.id, {
-      include: { model: User, attributes: ["id", "name", "email"] },
+      include: { model: User, attributes: ["id", "name", "email"],
+          include: [
+            {
+              model: CompanyProfile,
+              attributes: [
+                "companyName",
+                "address",
+                "phone",
+                "canProvideInternship",
+              ],
+            },
+          ],
+        }
     });
 
     if (!vacancy) {

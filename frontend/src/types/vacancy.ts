@@ -1,3 +1,5 @@
+import { User } from "./user";
+
 export interface Vacancy {
   id?: string;
   title: string;
@@ -7,4 +9,5 @@ export interface Vacancy {
   salary: string;
   createdAt?: string;
   userId?: string;
+  User?: User;
 }

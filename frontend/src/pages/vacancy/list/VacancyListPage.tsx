@@ -4,6 +4,7 @@ import { useAuth } from "../../../contexts/AuthContext";
 import { useVacancies } from "../../../hooks/vacancy/useVacancies";
 import LoadingScreen from "../../../components/LoadingScreen";
 import VacancyResponseModal from "../../../components/VacancyResponseModal";
+import { format } from "date-fns";
 
 import { IoIosSearch } from "react-icons/io";
 
@@ -23,7 +24,6 @@ const VacancyListPage = () => {
       v.description.toLowerCase().includes(q)
     );
   });
-  console.log(vacancies)
   return (
     <div className="max-w-5xl mx-auto px-6 text-white mb-36">
 
@@ -78,7 +78,7 @@ const VacancyListPage = () => {
           {filteredVacancies.map((vacancy) => (
             <li
               key={vacancy.id}
-              className="p-6 rounded-2xl bg-red-900/80 backdrop-blur-xs shadow-2xl transform transition-all duration-300"
+              className="px-6 py-3 pt-5 rounded-2xl bg-red-900/80 backdrop-blur-xs shadow-2xl transform transition-all duration-300"
             >
               <Link
                 to={`/vacancies/${vacancy.id}`}
@@ -93,6 +93,14 @@ const VacancyListPage = () => {
               <p className="text-white mt-2 line-clamp-3">
                 {vacancy.description}
               </p>
+              
+              <p className="mt-3">
+                <strong className="font-bold ">Вакансия от </strong> {vacancy.User?.CompanyProfile?.companyName}
+              </p>
+
+              <div className="text-white/70 text-xs text-end">
+                {format(new Date(vacancy.createdAt || ""), "dd.MM.yyyy HH:mm")}
+              </div>
 
               <div className="mt-4 flex gap-4 flex-wrap justify-end">
                 {role === "company" && (

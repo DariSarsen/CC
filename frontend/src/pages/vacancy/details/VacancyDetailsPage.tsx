@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { format } from "date-fns";
 import { deleteVacancy } from "../../../services/vacancyService";
 import { useAuth } from "../../../contexts/AuthContext";
 import { useVacancyDetails } from "../../../hooks/vacancy/useVacancyDetails";
@@ -15,11 +16,12 @@ const VacancyDetailsPage = () => {
   const { vacancy, isLoading } = useVacancyDetails(id!);
   const { responses } = useResponsesByVacancy(vacancy?.id || "", !!vacancy?.id);
   const [showModal, setShowModal] = useState(false);
+  const BASE_URL = "http://localhost:3000";
 
   const stats = {
     total: responses.length,
   };
-
+  console.log(vacancy)
   const handleDelete = async () => {
     if (!id) return;
     if (confirm("Вы уверены, что хотите удалить вакансию?")) {
@@ -64,6 +66,10 @@ const VacancyDetailsPage = () => {
             {stats.total} отклик(а)
           </p>
           <p>
+            <strong>Дата публикации:</strong>{" "}
+            {format(new Date(vacancy.createdAt || ""), "dd.MM.yyyy HH:mm")}
+          </p>
+          <p>
             <strong className="font-bold">Требования:</strong>{" "}
             {vacancy.requirements.length
               ? vacancy.requirements.join(", ")
@@ -78,8 +84,38 @@ const VacancyDetailsPage = () => {
           <p>
             <strong className="font-bold">Описание:</strong> {vacancy.description}
           </p>
-        </div>
+          {vacancy.User && (
+            <>
+              <p>
+                <strong className="font-bold">Адрес:</strong> {vacancy.User.CompanyProfile?.address}
+              </p>
+              <p>
+                <strong className="font-bold">Контактная информация:</strong> {vacancy.User.CompanyProfile?.phone}
+              </p>
+              <p>
+                <strong className="font-bold">Компания может проводить практику:</strong> {vacancy.User.CompanyProfile?.canProvideInternship ? "Да" : "Нет"}
+              </p>
 
+              <p>
+                <strong className="font-bold">Вакансия от </strong> {vacancy.User.CompanyProfile?.companyName}
+              </p>
+              <div className="bg-white/10 rounded-lg p-4 border border-white/20 space-y-2 text-sm text-white/80">
+                <h3 className="font-semibold">Вакансия была размещена</h3>
+                <div className="flex flex-row gap-4 my-3 items-center">
+                  <img
+                    src={`${BASE_URL}${user?.photo}`}
+                    alt=''
+                    className="w-11 h-11 rounded-full object-cover"
+                  />
+                  <div className="space-y-1 items-center">
+                    <p><strong>Имя:</strong> {vacancy.User.name}</p>
+                    <p><strong>Email:</strong> {vacancy.User.email}</p>
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
+        </div>
         {isOwner && (
           <div className="flex justify-around gap-4 mt-6">
             <button
