@@ -28,22 +28,22 @@ const ResumePage = () => {
   if (loading) return <LoadingScreen />;
 
   return (
-    <div className="max-w-4xl mx-auto mt-10 mb-20 bg-red-900/60 text-white p-6 rounded-2xl shadow-2xl">
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-3xl font-bold">Моё резюме</h1>
+    <div className="max-w-4xl mx-auto mt-10 mb-20 bg-gradient-to-r from-red-800 to-red-900 text-white p-6 sm:p-8 rounded-2xl shadow-2xl">
+      <div className="flex flex-col sm:flex-row justify-between items-center mb-6">
+        <h1 className="text-3xl sm:text-4xl font-bold">Моё резюме</h1>
         <button
-          className="flex items-center gap-2 bg-red-500/50 hover:bg-red-600 transition px-4 py-2 rounded text-sm"
+          className="flex items-center gap-2 bg-red-500/50 hover:bg-red-600 transition px-4 py-2 rounded text-sm sm:text-base"
           onClick={() => setIsEditing(!isEditing)}
         >
           {isEditing ? (
             <>
-            <FaEye />
-            Просмотр
+              <FaEye className="sm:text-xl" />
+              Просмотр
             </>
           ) : (
             <>
-            <FaEdit />
-            Редактировать
+              <FaEdit className="sm:text-xl" />
+              Редактировать
             </>
           )}
         </button>
@@ -53,7 +53,7 @@ const ResumePage = () => {
         <div className="space-y-6">
           {/* Опыт работы */}
           <section>
-            <h2 className="text-xl flex items-center gap-2 mb-2">
+            <h2 className="text-xl sm:text-2xl flex items-center gap-2 mb-2">
               <FaBriefcase /> Опыт работы
             </h2>
             {formData?.experience.map((exp, index) => (
@@ -62,7 +62,7 @@ const ResumePage = () => {
                 className="bg-white/40 backdrop-blur-sm border border-black/20 p-4 rounded-md mb-2 space-y-2"
               >
                 <input
-                  className="w-full p-2 rounded bg-red-900 text-white placeholder-red-200 focus:outline-none focus:ring-1 focus:ring-white"
+                  className="w-full p-2 sm:p-3 rounded bg-red-900 text-white placeholder-red-200 focus:outline-none focus:ring-1 focus:ring-white text-sm sm:text-base"
                   type="text"
                   name="company"
                   value={exp.company}
@@ -70,7 +70,7 @@ const ResumePage = () => {
                   placeholder="Компания"
                 />
                 <input
-                  className="w-full p-2 rounded bg-red-900 text-white placeholder-red-200 focus:outline-none focus:ring-1 focus:ring-white"
+                  className="w-full p-2 sm:p-3 rounded bg-red-900 text-white placeholder-red-200 focus:outline-none focus:ring-1 focus:ring-white text-sm sm:text-base"
                   type="text"
                   name="position"
                   value={exp.position}
@@ -78,7 +78,7 @@ const ResumePage = () => {
                   placeholder="Должность"
                 />
                 <input
-                  className="w-full p-2 rounded bg-red-900 text-white placeholder-red-200 focus:outline-none focus:ring-1 focus:ring-white"
+                  className="w-full p-2 sm:p-3 rounded bg-red-900 text-white placeholder-red-200 focus:outline-none focus:ring-1 focus:ring-white text-sm sm:text-base"
                   type="text"
                   name="duration"
                   value={exp.duration}
@@ -86,7 +86,7 @@ const ResumePage = () => {
                   placeholder="Длительность"
                 />
                 <button
-                  className="text-sm text-white hover:text-red-100"
+                  className="text-sm sm:text-base text-white hover:text-red-100 transition"
                   onClick={() => removeItem("experience", index)}
                 >
                   <FaTrash className="inline mr-1" /> Удалить
@@ -94,7 +94,7 @@ const ResumePage = () => {
               </div>
             ))}
             <button
-              className="flex items-center gap-2 text-sm text-white hover:text-white"
+              className="flex items-center gap-2 text-sm sm:text-base text-white hover:text-white transition"
               onClick={() =>
                 addItem("experience", {
                   company: "",
@@ -109,16 +109,16 @@ const ResumePage = () => {
 
           {/* Навыки */}
           <section>
-            <h2 className="text-xl flex items-center gap-2 mb-2">
+            <h2 className="text-xl sm:text-2xl flex items-center gap-2 mb-2">
               <FaTools /> Навыки
             </h2>
             {formData?.skills.map((skill, index) => (
               <div
                 key={index}
-                className="bg-white/40 backdrop-blur-sm  border border-black/20 p-4 rounded-md mb-2 space-y-2"
+                className="bg-white/40 backdrop-blur-sm border border-black/20 p-4 rounded-md mb-2 space-y-2"
               >
                 <input
-                  className="w-full p-2 rounded bg-red-900 text-white placeholder-red-200 focus:outline-none focus:ring-1 focus:ring-white"
+                  className="w-full p-2 sm:p-3 rounded bg-red-900 text-white placeholder-red-200 focus:outline-none focus:ring-1 focus:ring-white text-sm sm:text-base"
                   type="text"
                   name="name"
                   value={skill.name}
@@ -126,7 +126,7 @@ const ResumePage = () => {
                   placeholder="Название"
                 />
                 <input
-                  className="w-full p-2 rounded bg-red-900 text-white placeholder-red-200 focus:outline-none focus:ring-1 focus:ring-white"
+                  className="w-full p-2 sm:p-3 rounded bg-red-900 text-white placeholder-red-200 focus:outline-none focus:ring-1 focus:ring-white text-sm sm:text-base"
                   type="text"
                   name="level"
                   value={skill.level}
@@ -134,7 +134,7 @@ const ResumePage = () => {
                   placeholder="Уровень"
                 />
                 <button
-                  className="text-sm text-white hover:text-red-100"
+                  className="text-sm sm:text-base text-white hover:text-red-100 transition"
                   onClick={() => removeItem("skills", index)}
                 >
                   <FaTrash className="inline mr-1" /> Удалить
@@ -142,7 +142,7 @@ const ResumePage = () => {
               </div>
             ))}
             <button
-              className="flex items-center gap-2 text-sm text-white hover:text-white"
+              className="flex items-center gap-2 text-sm sm:text-base text-white hover:text-white transition"
               onClick={() => addItem("skills", { name: "", level: "" })}
             >
               <FaPlus /> Добавить навык
@@ -151,16 +151,16 @@ const ResumePage = () => {
 
           {/* Языки */}
           <section>
-            <h2 className="text-xl flex items-center gap-2 mb-2">
+            <h2 className="text-xl sm:text-2xl flex items-center gap-2 mb-2">
               <FaGlobe /> Языки
             </h2>
             {formData?.languages.map((lang, index) => (
               <div
                 key={index}
-                className="bg-white/40 backdrop-blur-sm  border border-black/20 p-4 rounded-md mb-2 space-y-2"
+                className="bg-white/40 backdrop-blur-sm border border-black/20 p-4 rounded-md mb-2 space-y-2"
               >
                 <input
-                  className="w-full p-2 rounded bg-red-900 text-white placeholder-red-200 focus:outline-none focus:ring-1 focus:ring-white"
+                  className="w-full p-2 sm:p-3 rounded bg-red-900 text-white placeholder-red-200 focus:outline-none focus:ring-1 focus:ring-white text-sm sm:text-base"
                   type="text"
                   name="name"
                   value={lang.name}
@@ -168,7 +168,7 @@ const ResumePage = () => {
                   placeholder="Язык"
                 />
                 <input
-                  className="w-full p-2 rounded bg-red-900 text-white placeholder-red-200 focus:outline-none focus:ring-1 focus:ring-white"
+                  className="w-full p-2 sm:p-3 rounded bg-red-900 text-white placeholder-red-200 focus:outline-none focus:ring-1 focus:ring-white text-sm sm:text-base"
                   type="text"
                   name="proficiency"
                   value={lang.proficiency}
@@ -176,7 +176,7 @@ const ResumePage = () => {
                   placeholder="Уровень"
                 />
                 <button
-                  className="text-sm text-white hover:text-red-100"
+                  className="text-sm sm:text-base text-white hover:text-red-100 transition"
                   onClick={() => removeItem("languages", index)}
                 >
                   <FaTrash className="inline mr-1" /> Удалить
@@ -184,7 +184,7 @@ const ResumePage = () => {
               </div>
             ))}
             <button
-              className="flex items-center gap-2 text-sm text-white hover:text-white"
+              className="flex items-center gap-2 text-sm sm:text-base text-white hover:text-white transition"
               onClick={() =>
                 addItem("languages", { name: "", proficiency: "" })
               }
@@ -193,13 +193,13 @@ const ResumePage = () => {
             </button>
           </section>
 
-          {/* Доп. информация */}
+          {/* Дополнительная информация */}
           <section>
-            <h2 className="text-xl flex items-center gap-2 mb-2">
+            <h2 className="text-xl sm:text-2xl flex items-center gap-2 mb-2">
               <FaInfoCircle /> Дополнительная информация
             </h2>
             <textarea
-              className="w-full p-2 rounded bg-red-900 text-white placeholder-red-200 focus:outline-none focus:ring-1 focus:ring-white h-24"
+              className="w-full p-2 sm:p-3 rounded bg-red-900 text-white placeholder-red-200 focus:outline-none focus:ring-1 focus:ring-white h-24 text-sm sm:text-base"
               name="additionalInfo"
               value={formData?.additionalInfo}
               onChange={(e) => handleChange(e, "additionalInfo")}
@@ -208,7 +208,7 @@ const ResumePage = () => {
           </section>
 
           <button
-            className="mt-4 bg-green-600 hover:bg-green-500 transition px-4 py-2 rounded text-white flex items-center gap-2"
+            className="mt-4 bg-green-600 hover:bg-green-500 transition px-4 py-2 rounded text-white flex items-center gap-2 text-sm sm:text-base"
             onClick={saveResume}
           >
             <FaSave /> Сохранить
@@ -218,18 +218,24 @@ const ResumePage = () => {
         <div className="space-y-6">
           {/* Просмотр */}
           <section>
-            <h2 className="text-xl flex items-center gap-2 mb-2">
+            <h2 className="text-xl sm:text-2xl flex items-center gap-2 mb-2">
               <FaBriefcase /> Опыт работы
             </h2>
             {resume?.experience?.length ? (
               resume.experience.map((exp, index) => (
                 <div
                   key={index}
-                  className="bg-red-900/60 backdrop-blur-sm  border border-black/10 p-4 rounded-md mb-2"
+                  className="bg-red-900/60 backdrop-blur-sm border border-black/10 p-4 rounded-md mb-2"
                 >
-                  <p><strong>Компания:</strong> {exp.company}</p>
-                  <p><strong>Должность:</strong> {exp.position}</p>
-                  <p><strong>Длительность:</strong> {exp.duration}</p>
+                  <p>
+                    <strong>Компания:</strong> {exp.company}
+                  </p>
+                  <p>
+                    <strong>Должность:</strong> {exp.position}
+                  </p>
+                  <p>
+                    <strong>Длительность:</strong> {exp.duration}
+                  </p>
                 </div>
               ))
             ) : (
@@ -238,7 +244,7 @@ const ResumePage = () => {
           </section>
 
           <section>
-            <h2 className="text-xl flex items-center gap-2 mb-2">
+            <h2 className="text-xl sm:text-2xl flex items-center gap-2 mb-2">
               <FaTools /> Навыки
             </h2>
             {resume?.skills?.length ? (
@@ -246,7 +252,7 @@ const ResumePage = () => {
                 {resume.skills.map((skill, index) => (
                   <span
                     key={index}
-                    className="bg-red-900/60 backdrop-blur-sm  px-4 py-1 rounded-full border border-black/10 text-sm"
+                    className="bg-red-900/60 backdrop-blur-sm px-4 py-1 rounded-full border border-black/10 text-sm"
                   >
                     {skill.name} ({skill.level})
                   </span>
@@ -258,7 +264,7 @@ const ResumePage = () => {
           </section>
 
           <section>
-            <h2 className="text-xl flex items-center gap-2 mb-2">
+            <h2 className="text-xl sm:text-2xl flex items-center gap-2 mb-2">
               <FaGlobe /> Языки
             </h2>
             {resume?.languages?.length ? (
@@ -266,7 +272,7 @@ const ResumePage = () => {
                 {resume.languages.map((lang, index) => (
                   <span
                     key={index}
-                    className="bg-red-900/60 px-4 py-1 text-sm rounded-full border border-black/10"
+                    className="bg-red-900/60 px-4 py-1 rounded-full border border-black/10 text-sm"
                   >
                     {lang.name} ({lang.proficiency})
                   </span>
@@ -278,7 +284,7 @@ const ResumePage = () => {
           </section>
 
           <section>
-            <h2 className="text-xl flex items-center gap-2 mb-2">
+            <h2 className="text-xl sm:text-2xl flex items-center gap-2 mb-2">
               <FaInfoCircle /> Дополнительная информация
             </h2>
             <div className="text-white leading-relaxed bg-red-900/60 backdrop-blur-sm p-4 rounded-md">

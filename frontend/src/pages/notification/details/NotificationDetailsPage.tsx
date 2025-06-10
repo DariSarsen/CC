@@ -6,7 +6,7 @@ const NotificationDetailsPage = () => {
 
   if (!notification) {
     return (
-      <div className="p-6 text-white text-center text-xl">
+      <div className="p-4 sm:p-6 text-white text-center text-base sm:text-xl">
         Оповещение не найдено
       </div>
     );
@@ -14,48 +14,44 @@ const NotificationDetailsPage = () => {
 
   return (
     <div className="text-white">
-      <div className="max-w-5xl space-y-5 mx-auto my-20 p-15 bg-red-900/50 backdrop-blur-xs shadow-2xl rounded-[50px] ">
-        <div className="space-y-1">
-          <h1 className="text-3xl font-bold capitalize">
+      <div className="max-w-4xl mx-auto my-8 sm:my-16 p-6 sm:p-8 bg-red-800/70 backdrop-blur-md shadow-xl rounded-2xl">
+        <div className="mb-6 text-center">
+          <h1 className="text-2xl sm:text-3xl font-bold uppercase tracking-wide">
             {notification.title}
           </h1>
-          <p className="text-sm text-red-200">
+          <p className="mt-2 text-xs sm:text-sm text-red-300">
             Создано: {new Date(notification.createdAt || "").toLocaleString()}
           </p>
         </div>
         
-        <div className="flex flex-row items-start justify-between gap-7">
-          {/* Image Upload */}
-          
-            {notification.imageUrl ? (
-              <div className="w-2/5">
-                <img
-                  src={`${BASE_URL}${notification.imageUrl}`}
-                  alt={`${notification.imageUrl}`}
-                  className="max-w-full rounded-lg"
-                />
-              </div>
-            ) : (
-              ""
-            )}
-          <div className={`${notification.imageUrl ? ("w-3/5") : ("w-full")}`}> 
-            <p className="text-lg whitespace-pre-line text-justify">
+        <div className="flex flex-col sm:flex-row gap-6">
+          {notification.imageUrl && (
+            <div className="w-full sm:w-1/3">
+              <img
+                src={`${BASE_URL}${notification.imageUrl}`}
+                alt="Изображение оповещения"
+                className="w-full h-auto rounded-lg object-cover"
+              />
+            </div>
+          )}
+          <div className={notification.imageUrl ? "w-full sm:w-2/3" : "w-full"}>
+            <p className="text-base sm:text-lg leading-relaxed whitespace-pre-line">
               {notification.content}
             </p>
           </div>
         </div>
 
         {role === "career_center" && (
-          <div className="flex justify-around gap-6 mt-16">
+          <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
             <button
               onClick={handleEdit}
-              className="px-6 py-3 bg-green-800/40 border border-white/40 hover:bg-green-800/70 hover:border-green-900/80 text-white rounded-lg shadow-md transition transform"
+              className="px-4 py-2 bg-green-600 hover:bg-green-700 transition rounded-lg text-xs sm:text-sm font-medium"
             >
               Редактировать
             </button>
             <button
               onClick={handleDelete}
-              className="px-6 py-3 bg-red-800/40 border border-white/40 hover:bg-red-800/70 hover:border-red-900/80 text-white rounded-lg shadow-md transition transform"
+              className="px-4 py-2 bg-red-600 hover:bg-red-700 transition rounded-lg text-xs sm:text-sm font-medium"
             >
               Удалить
             </button>

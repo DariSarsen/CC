@@ -82,7 +82,6 @@ const AppRouter = () => (
         <Route path="/resumes" element={<ResumeListPage />} />
         <Route path="/resumes/:id" element={<ResumeDetailsPage />} />
         </Route>
-
         <Route element={AccessCompany}>
             <Route path="/vacancies/new" element={<VacancyFormPage />} />
             <Route path="/vacancies/:id/edit" element={<VacancyFormPage />} />

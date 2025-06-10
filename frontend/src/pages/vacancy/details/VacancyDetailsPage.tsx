@@ -21,7 +21,7 @@ const VacancyDetailsPage = () => {
   const stats = {
     total: responses.length,
   };
-  console.log(vacancy)
+
   const handleDelete = async () => {
     if (!id) return;
     if (confirm("Вы уверены, что хотите удалить вакансию?")) {
@@ -46,13 +46,13 @@ const VacancyDetailsPage = () => {
 
   return (
     <>
-      <div className="text-white">
-        <p className="text-3xl font-bold capitalize">Vacancy Details</p>
-        <p className="text-xl font-light">Подробности по выбранной вакансии</p>
+      <div className="mt-24 text-white px-4">
+        <p className="text-3xl sm:text-4xl font-bold capitalize">Vacancy Details</p>
+        <p className="text-xl sm:text-2xl font-light">Подробности по выбранной вакансии</p>
       </div>
 
-      <div className="max-w-4xl mx-auto m-2 my-10 p-10 bg-red-900/70 backdrop-blur-xs shadow-2xl rounded-[50px] text-white space-y-8">
-        <h2 className="text-4xl font-semibold">{vacancy.title}</h2>
+      <div className="max-w-4xl mx-auto m-2 my-10 p-6 sm:p-10 bg-red-900/70 backdrop-blur-sm shadow-2xl rounded-3xl text-white space-y-8">
+        <h2 className="text-3xl sm:text-4xl font-semibold">{vacancy.title}</h2>
 
         {showModal && (
           <VacancyResponseModal
@@ -61,8 +61,8 @@ const VacancyDetailsPage = () => {
           />
         )}
 
-        <div className="text-lg space-y-4">
-          <p className=" bg-green-700 border border-green-900 border-opacity-40/30 rounded-lg px-4 py-2 w-max">
+        <div className="text-lg sm:text-xl space-y-4">
+          <p className="bg-green-700 border border-green-900 border-opacity-40 rounded-lg px-4 py-2 w-max">
             {stats.total} отклик(а)
           </p>
           <p>
@@ -95,19 +95,18 @@ const VacancyDetailsPage = () => {
               <p>
                 <strong className="font-bold">Компания может проводить практику:</strong> {vacancy.User.CompanyProfile?.canProvideInternship ? "Да" : "Нет"}
               </p>
-
               <p>
                 <strong className="font-bold">Вакансия от </strong> {vacancy.User.CompanyProfile?.companyName}
               </p>
-              <div className="bg-white/10 rounded-lg p-4 border border-white/20 space-y-2 text-sm text-white/80">
+              <div className="bg-white/10 rounded-lg p-4 border border-white/20 flex flex-col gap-2 text-sm text-white/80">
                 <h3 className="font-semibold">Вакансия была размещена</h3>
-                <div className="flex flex-row gap-4 my-3 items-center">
+                <div className="flex gap-4 my-3 items-center">
                   <img
                     src={`${BASE_URL}${user?.photo}`}
-                    alt=''
-                    className="w-11 h-11 rounded-full object-cover"
+                    alt=""
+                    className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover"
                   />
-                  <div className="space-y-1 items-center">
+                  <div className="space-y-1">
                     <p><strong>Имя:</strong> {vacancy.User.name}</p>
                     <p><strong>Email:</strong> {vacancy.User.email}</p>
                   </div>
@@ -116,17 +115,18 @@ const VacancyDetailsPage = () => {
             </>
           )}
         </div>
+        
         {isOwner && (
-          <div className="flex justify-around gap-4 mt-6">
+          <div className="flex flex-col sm:flex-row justify-around gap-4 mt-6">
             <button
               onClick={handleEdit}
-              className="p-3 text-green-800 border-none text-xl bg-white/60 rounded-lg hover:bg-opacity-40 hover:bg-green-700 hover:text-white transition-all duration-500"
+              className="p-3 text-green-800 text-xl bg-white/60 rounded-lg hover:bg-green-700 hover:text-white transition-all duration-500"
             >
               Редактировать
             </button>
             <button
               onClick={handleDelete}
-              className="p-3 text-red-800 border-none text-xl bg-white/60 rounded-lg hover:bg-opacity-70 hover:bg-red-700 hover:text-white transition-all duration-500"
+              className="p-3 text-red-800 text-xl bg-white/60 rounded-lg hover:bg-red-700 hover:text-white transition-all duration-500"
             >
               Удалить
             </button>
@@ -137,7 +137,7 @@ const VacancyDetailsPage = () => {
           <div className="flex justify-center">
             <button
               onClick={() => setShowModal(true)}
-              className="p-3 border-none text-lg bg-red-950/30 backdrop-blur-xs rounded-lg hover:bg-opacity-70 hover:scale-105 transform transition-all duration-300 ease-in-out"
+              className="p-3 border-none text-lg bg-red-950/30 backdrop-blur-sm rounded-lg hover:bg-opacity-70 hover:scale-105 transform transition-all duration-300 ease-in-out"
             >
               Откликнуться
             </button>

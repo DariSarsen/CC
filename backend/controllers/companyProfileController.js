@@ -3,35 +3,18 @@ const { User, CompanyProfile } = require("../models");
 exports.upsertCompanyProfile = async (req, res) => {
     try {
         const userId = req.user.id;
-        const {
-            companyName,
-            address,
-            phone,
-            directorFullName,
-            canProvideInternship,
-            BIN,
-            BIK,
-            KBE,
-            BANK,
-            representedBy,
-            basis,
-        } = req.body;
+        const {companyName, address, phone, directorFullName, canProvideInternship, BIN, BIK, KBE, BANK, representedBy, basis, } = req.body;
+        
+        if (canProvideInternship) {
+            if (!BIN || !BIK || !KBE || !BANK || !representedBy || !basis) {
+                return res.status(400).json({
+                message: "Если выбрана возможность предоставлять практику, необходимо заполнить все поля: BIN, BIK, KBE, BANK, representedBy, basis",
+                });
+            }
+        }
 
         const [profile, created] = await CompanyProfile.upsert(
-            {
-                userId,
-                companyName,
-                address,
-                phone,
-                directorFullName,
-                canProvideInternship,
-                BIN,
-                BIK,
-                KBE,
-                BANK,
-                representedBy,
-                basis,
-            },
+            {userId, companyName, address, phone, directorFullName, canProvideInternship, BIN, BIK, KBE, BANK, representedBy, basis, },
             { conflictFields: ['userId'], returning: true }
         );
 

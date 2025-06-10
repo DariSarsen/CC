@@ -18,7 +18,8 @@ const ResumeListPage = () => {
 
   const filteredResumes = resumes.filter((resume) => {
     const fullName = resume.User?.name?.toLowerCase() || "";
-    const skills = resume.skills?.map((s) => s.name.toLowerCase()).join(" ") || "";
+    const skills =
+      resume.skills?.map((s) => s.name.toLowerCase()).join(" ") || "";
     return (
       fullName.includes(search.toLowerCase()) ||
       skills.includes(search.toLowerCase())
@@ -26,27 +27,31 @@ const ResumeListPage = () => {
   });
 
   return (
-    <div className="max-w-6xl mx-auto px-6 text-white mb-36">
+    <div className="max-w-6xl mx-auto px-4 py-6 text-white mb-24">
       <div className="mb-8">
-        <h1 className="text-4xl font-bold capitalize">Резюме студентов</h1>
-        <p className="text-lg text-white">Просмотр, поиск и отбор кандидатов</p>
+        <h1 className="text-3xl sm:text-4xl font-bold capitalize">
+          Резюме студентов
+        </h1>
+        <p className="text-lg sm:text-xl text-white">
+          Просмотр, поиск и отбор кандидатов
+        </p>
       </div>
 
       <div className="flex items-center gap-3 mb-8 bg-red-900/80 p-4 rounded-xl">
-        <IoIosSearch className="text-white text-xl" />
+        <IoIosSearch className="text-white text-2xl" />
         <input
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Поиск по имени или навыкам..."
-          className="w-full bg-transparent focus:outline-none text-white placeholder-red-200 text-lg"
+          className="w-full bg-transparent focus:outline-none text-white placeholder-red-200 text-lg sm:text-xl"
         />
       </div>
 
       {loading ? (
         <LoadingScreen />
       ) : filteredResumes.length === 0 ? (
-        <p className="text-center text-white">Резюме не найдены</p>
+        <p className="text-center text-white text-lg">Резюме не найдены</p>
       ) : (
         <ul className="space-y-6">
           {filteredResumes.map((resume) => (
@@ -56,23 +61,26 @@ const ResumeListPage = () => {
             >
               <Link
                 to={`/resumes/${resume.id}`}
-                className="text-2xl font-semibold text-white hover:underline flex items-center gap-2 mb-1"
+                className="flex items-center gap-2 mb-1 text-2xl sm:text-3xl font-semibold text-white hover:underline"
               >
-                <FaUser className="text-white" /> {resume.User?.name ?? "Без имени"}
+                <FaUser className="text-white" />{" "}
+                {resume.User?.name ?? "Без имени"}
               </Link>
 
-              <p className="text-base text-white mb-3">{resume.User?.email ?? "Без email"}</p>
+              <p className="mb-3 text-base sm:text-xl text-white">
+                {resume.User?.email ?? "Без email"}
+              </p>
 
               {resume.experience?.length > 0 && (
                 <div className="mb-3">
-                  <h3 className="flex items-center gap-2 text-white font-semibold text-lg mb-1">
+                  <h3 className="flex items-center gap-2 mb-1 text-lg sm:text-xl font-semibold text-white">
                     <FaBriefcase /> Опыт
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {resume.experience.map((exp, idx) => (
                       <span
                         key={idx}
-                        className="bg-red-300/20 text-white text-sm px-3 py-1 rounded-full border border-black/30"
+                        className="text-sm sm:text-base px-3 py-1 rounded-full border border-black/30 bg-red-300/20 text-white"
                       >
                         {exp.position} в {exp.company} ({exp.duration})
                       </span>
@@ -83,14 +91,14 @@ const ResumeListPage = () => {
 
               {resume.skills?.length > 0 && (
                 <div className="mb-3">
-                  <h3 className="flex items-center gap-2 text-white font-semibold text-lg mb-1">
+                  <h3 className="flex items-center gap-2 mb-1 text-lg sm:text-xl font-semibold text-white">
                     <FaTools /> Навыки
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {resume.skills.map((s, idx) => (
                       <span
                         key={idx}
-                        className="bg-red-300/20 border border-black/30 text-sm px-3 py-1 rounded-full text-white"
+                        className="text-sm sm:text-base px-3 py-1 rounded-full border border-black/30 bg-red-300/20 text-white"
                       >
                         {s.name} ({s.level})
                       </span>
@@ -101,14 +109,14 @@ const ResumeListPage = () => {
 
               {resume.languages?.length > 0 && (
                 <div className="mb-3">
-                  <h3 className="flex items-center gap-2 text-white font-semibold text-lg mb-1">
+                  <h3 className="flex items-center gap-2 mb-1 text-lg sm:text-xl font-semibold text-white">
                     <FaGlobe /> Языки
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {resume.languages.map((l, idx) => (
                       <span
                         key={idx}
-                        className="bg-red-300/20 border border-black/30 text-sm px-3 py-1 rounded-full text-white"
+                        className="text-sm sm:text-base px-3 py-1 rounded-full border border-black/30 bg-red-300/20 text-white"
                       >
                         {l.name} ({l.proficiency})
                       </span>
@@ -119,10 +127,12 @@ const ResumeListPage = () => {
 
               {resume.additionalInfo && (
                 <div>
-                  <h3 className="flex items-center gap-2 text-white font-semibold text-lg mb-1">
+                  <h3 className="flex items-center gap-2 mb-1 text-lg sm:text-xl font-semibold text-white">
                     <FaInfoCircle /> Дополнительно
                   </h3>
-                  <p className="text-white text-base line-clamp-3">{resume.additionalInfo}</p>
+                  <p className="line-clamp-3 text-base sm:text-xl text-white">
+                    {resume.additionalInfo}
+                  </p>
                 </div>
               )}
             </li>

@@ -34,16 +34,16 @@ const NotificationFormPage = () => {
   };
 
   return (
-    <div className="text-white">
-      <p className="text-3xl font-bold capitalize">
+    <div className="text-white px-4 sm:px-8">
+      <p className="text-xl sm:text-3xl font-bold capitalize">
         {isEdit ? "Редактировать оповещение" : "Создать оповещение"}
       </p>
-      <p className="text-xl font-light">
+      <p className="text-sm sm:text-xl font-light mb-4">
         Добавьте текст и изображение к уведомлению
       </p>
 
-      <div className="max-w-5xl mx-auto my-20 p-10 bg-red-900/50 backdrop-blur-xs shadow-2xl rounded-[50px] text-white space-y-10">
-        <h2 className="text-3xl font-semibold text-center capitalize">
+      <div className="max-w-5xl mx-auto my-8 sm:my-20 p-4 sm:p-10 bg-red-900/50 backdrop-blur-sm shadow-2xl rounded-2xl space-y-6">
+        <h2 className="text-lg sm:text-3xl font-semibold text-center capitalize">
           {isEdit ? "Редактирование" : "Новое оповещение"}
         </h2>
 
@@ -52,12 +52,15 @@ const NotificationFormPage = () => {
         ) : (
           <form
             onSubmit={onSubmit}
-            className="space-y-6 flex flex-col items-center w-full"
+            className="space-y-4 flex flex-col items-center w-full"
           >
             {/* Title */}
-            <div className="w-4/5 space-y-2">
-              <label htmlFor="title">
-                <span className="font-semibold">Заголовок: *</span>
+            <div className="w-full sm:w-4/5 space-y-1">
+              <label
+                htmlFor="title"
+                className="block text-xs sm:text-sm font-semibold"
+              >
+                Заголовок: *
               </label>
               <input
                 type="text"
@@ -66,37 +69,40 @@ const NotificationFormPage = () => {
                 value={form.title}
                 onChange={handleChange}
                 placeholder="Введите заголовок"
-                className="w-full p-3 border-none text-lg bg-red-900/20 backdrop-blur-xs rounded-lg outline-hidden focus:ring-1 focus:ring-white placeholder:text-red-200 transition duration-300 ease-in-out"
                 required
+                className="w-full p-2 sm:p-3 border-none text-sm sm:text-lg bg-red-900/20 backdrop-blur-sm rounded-lg focus:ring-1 focus:ring-white transition duration-300 ease-in-out"
               />
             </div>
             
-            <div className="flex flex-row items-start justify-between w-4/5 gap-7">
+            <div className="flex flex-col sm:flex-row items-start justify-between w-full sm:w-4/5 gap-4">
               {/* Image Upload */}
-              <div className="w-2/5 space-y-2">
+              <div className="w-full sm:w-2/5 space-y-1">
                 {/* Preview */}
                 {getImagePreview() && (
                   <>
                     <img
                       src={getImagePreview()!}
                       alt="Preview"
-                      className="max-w-full mt-2 rounded-lg"
+                      className="w-full sm:max-w-full mt-2 rounded-lg"
                     />
-                    <p className="text-sm text-white mt-2">
+                    <p className="text-xs sm:text-sm text-white mt-1">
                       {imageFile ? "Новое изображение:" : "Текущее изображение:"}
                     </p>
                   </>
                 )}
-
-                <label className="font-semibold">Изображение:</label>
-
+                <label className="block text-xs sm:text-sm font-semibold">
+                  Изображение:
+                </label>
                 <label
                   htmlFor="image"
-                  className="flex items-center gap-3 px-4 py-3 bg-red-900/20 backdrop-blur-xs rounded-lg cursor-pointer hover:bg-red-900/70 transition"
+                  className="flex items-center gap-2 px-3 py-2 bg-red-900/20 backdrop-blur-sm rounded-lg cursor-pointer hover:bg-red-900/60 transition text-xs sm:text-sm"
                 >
-                  <FaUpload size={20} />
-                  <span className="text-sm text-white truncate">
-                    {imageFile?.name || form.imageUrl?.split("/").pop() || "Выберите файл (необязательно)"}
+                  <FaUpload size={16} className="sm:hidden" />
+                  <FaUpload size={20} className="hidden sm:block" />
+                  <span className="truncate">
+                    {imageFile?.name ||
+                      form.imageUrl?.split("/").pop() ||
+                      "Выберите файл (необязательно)"}
                   </span>
                   <input
                     id="image"
@@ -109,9 +115,12 @@ const NotificationFormPage = () => {
               </div>
 
               {/* Content */}
-              <div className="w-3/5 space-y-2">
-                <label htmlFor="content">
-                  <span className="font-semibold">Сообщение: *</span>
+              <div className="w-full sm:w-3/5 space-y-1">
+                <label
+                  htmlFor="content"
+                  className="block text-xs sm:text-sm font-semibold"
+                >
+                  Сообщение: *
                 </label>
                 <textarea
                   name="content"
@@ -119,18 +128,17 @@ const NotificationFormPage = () => {
                   value={form.content}
                   onChange={handleChange}
                   placeholder="Введите сообщение"
-                  rows={15}
-                  className="w-full p-4 border-none text-lg bg-red-900/20 backdrop-blur-xs rounded-lg outline-hidden focus:ring-1 focus:ring-white placeholder:text-red-200 transition duration-300 ease-in-out"
+                  rows={10}
                   required
+                  className="w-full p-2 sm:p-4 border-none text-sm sm:text-lg bg-red-900/20 backdrop-blur-sm rounded-lg focus:ring-1 focus:ring-white transition duration-300 ease-in-out"
                 />
               </div>
-
             </div>
             
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-1/2 p-3 border-none text-lg bg-red-950/30 backdrop-blur-xs rounded-lg hover:bg-opacity-70 hover:scale-105 transform transition-all duration-300 ease-in-out"
+              className="w-1/2 sm:w-1/3 p-2 sm:p-3 bg-red-950/30 backdrop-blur-sm rounded-lg hover:bg-opacity-70 hover:scale-105 transition-all duration-300 ease-in-out text-xs sm:text-sm"
             >
               {isEdit ? "Сохранить" : "Создать"}
             </button>

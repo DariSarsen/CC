@@ -49,14 +49,14 @@ export const useCompanyProfileById = (id?: string) => {
     if (!id) {
     getMyCompanyProfile()
       .then((data) => setProfile(data))
-      .catch((err) => err.status==404 ? toast.info("У вас еще нет профиля. Заполните, пожалуйста") : toast.error("Ошибка при загрузке профиля компании"))
+      .catch((err) => err.status==404 ? toast.info("У вас еще нет профиля. Заполните, пожалуйста") : toast.error(err.response?.data?.message || "Ошибка при загрузке профиля компании"))
       .finally(() => setLoading(false));
 
     }else{
       setLoading(true);
       getCompanyProfileById(id)
       .then((data) => setProfile(data))
-      .catch((err) => err.status==404 ? toast.info("В базе нет записей") : toast.error("Ошибка при загрузке профиля компании"))
+      .catch((err) => err.status==404 ? toast.info("В базе нет записей") : toast.error(err.response?.data?.message || "Ошибка при загрузке профиля компании"))
       .finally(() => setLoading(false));
     }}, [id]);
 

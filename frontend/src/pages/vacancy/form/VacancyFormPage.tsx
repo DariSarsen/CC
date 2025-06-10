@@ -24,30 +24,33 @@ const VacancyFormPage = () => {
 
   return (
     <>
-      <div className="ml-10 text-white mt-10">
-        <p className="text-3xl font-bold capitalize">
+      <div className="ml-4 sm:ml-10 text-white mt-10">
+        <p className="text-2xl sm:text-3xl font-bold capitalize">
           {isEdit ? "Редактировать вакансию" : "Новая вакансия"}
         </p>
-        <p className="text-xl font-light">
+        <p className="text-lg sm:text-xl font-light">
           {isEdit
             ? "Измените информацию о вакансии"
             : "Создание новой вакансии для студентов"}
         </p>
       </div>
 
-      <div className="max-w-3xl mx-auto m-2 my-20 p-10 bg-red-900/60 backdrop-blur-xs shadow-2xl rounded-[50px] text-white space-y-10">
-        <h2 className="text-3xl font-semibold text-center capitalize">
+      <div className="max-w-3xl mx-auto my-16 p-6 sm:p-10 bg-red-900/60 backdrop-blur-md shadow-2xl rounded-[50px] text-white space-y-8">
+        <h2 className="text-2xl sm:text-3xl font-semibold text-center capitalize">
           {isEdit ? "Обновление вакансии" : "Создание вакансии"}
         </h2>
 
         {isLoading ? (
           <LoadingScreen />
         ) : (
-          <form onSubmit={onSubmit} className="space-y-4 flex flex-col items-center">
+          <form 
+            onSubmit={onSubmit} 
+            className="space-y-4 flex flex-col items-center"
+          >
             {/* Title */}
-            <div className="w-4/5 space-y-2">
-              <label htmlFor="title">
-                <span className="font-semibold">Название вакансии: *</span>
+            <div className="w-full sm:w-4/5 space-y-2">
+              <label htmlFor="title" className="text-sm sm:text-base font-semibold">
+                Название вакансии: *
               </label>
               <input
                 type="text"
@@ -56,15 +59,15 @@ const VacancyFormPage = () => {
                 placeholder="Введите название"
                 value={form.title}
                 onChange={handleChange}
-                className="w-full p-4 border-none text-lg bg-red-900/20 backdrop-blur-xs rounded-lg outline-hidden focus:ring-1 focus:ring-white placeholder:text-red-200 transition-all duration-300 ease-in-out"
+                className="w-full p-3 sm:p-4 border-none text-base sm:text-lg bg-red-900/20 backdrop-blur-sm rounded-lg focus:ring-1 focus:ring-white placeholder:text-red-200 transition-all duration-300 ease-in-out"
                 required
               />
             </div>
 
             {/* Description */}
-            <div className="w-4/5 space-y-2">
-              <label htmlFor="description">
-                <span className="font-semibold">Описание:</span>
+            <div className="w-full sm:w-4/5 space-y-2">
+              <label htmlFor="description" className="text-sm sm:text-base font-semibold">
+                Описание:
               </label>
               <textarea
                 name="description"
@@ -72,14 +75,14 @@ const VacancyFormPage = () => {
                 placeholder="Описание вакансии"
                 value={form.description}
                 onChange={handleChange}
-                className="w-full p-4 h-32 border-none text-lg bg-red-900/20 backdrop-blur-xs rounded-lg outline-hidden focus:ring-1 focus:ring-white placeholder:text-red-200 transition-all duration-300 ease-in-out resize-none"
+                className="w-full p-3 sm:p-4 h-32 border-none text-base sm:text-lg bg-red-900/20 backdrop-blur-sm rounded-lg focus:ring-1 focus:ring-white placeholder:text-red-200 transition-all duration-300 ease-in-out resize-none"
               />
             </div>
 
             {/* Requirements */}
-            <div className="w-4/5 space-y-2">
-              <label htmlFor="requirements">
-                <span className="font-semibold">Требования:</span>
+            <div className="w-full sm:w-4/5 space-y-2">
+              <label htmlFor="requirements" className="text-sm sm:text-base font-semibold">
+                Требования:
               </label>
               <input
                 type="text"
@@ -88,14 +91,14 @@ const VacancyFormPage = () => {
                 placeholder="Например: React, Python, Figma"
                 value={requirementsInput}
                 onChange={handleRequirementsChange}
-                className="w-full p-4 border-none text-lg bg-red-900/20 backdrop-blur-xs rounded-lg outline-hidden focus:ring-1 focus:ring-white placeholder:text-red-200 transition-all duration-300 ease-in-out"
+                className="w-full p-3 sm:p-4 border-none text-base sm:text-lg bg-red-900/20 backdrop-blur-sm rounded-lg focus:ring-1 focus:ring-white placeholder:text-red-200 transition-all duration-300 ease-in-out"
               />
             </div>
 
             {/* Location */}
-            <div className="w-4/5 space-y-2">
-              <label htmlFor="location">
-                <span className="font-semibold">Локация:</span>
+            <div className="w-full sm:w-4/5 space-y-2">
+              <label htmlFor="location" className="text-sm sm:text-base font-semibold">
+                Локация:
               </label>
               <input
                 type="text"
@@ -104,14 +107,14 @@ const VacancyFormPage = () => {
                 placeholder="Город или онлайн"
                 value={form.location}
                 onChange={handleChange}
-                className="w-full p-4 border-none text-lg bg-red-900/20 backdrop-blur-xs rounded-lg outline-hidden focus:ring-1 focus:ring-white placeholder:text-red-200 transition-all duration-300 ease-in-out"
+                className="w-full p-3 sm:p-4 border-none text-base sm:text-lg bg-red-900/20 backdrop-blur-sm rounded-lg focus:ring-1 focus:ring-white placeholder:text-red-200 transition-all duration-300 ease-in-out"
               />
             </div>
 
             {/* Salary */}
-            <div className="w-4/5 space-y-2">
-              <label htmlFor="salary">
-                <span className="font-semibold">Зарплата:</span>
+            <div className="w-full sm:w-4/5 space-y-2">
+              <label htmlFor="salary" className="text-sm sm:text-base font-semibold">
+                Зарплата:
               </label>
               <input
                 type="text"
@@ -120,14 +123,14 @@ const VacancyFormPage = () => {
                 placeholder="Укажите диапазон"
                 value={form.salary}
                 onChange={handleChange}
-                className="w-full p-4 border-none text-lg bg-red-900/20 backdrop-blur-xs rounded-lg outline-hidden focus:ring-1 focus:ring-white placeholder:text-red-200 transition-all duration-300 ease-in-out"
+                className="w-full p-3 sm:p-4 border-none text-base sm:text-lg bg-red-900/20 backdrop-blur-sm rounded-lg focus:ring-1 focus:ring-white placeholder:text-red-200 transition-all duration-300 ease-in-out"
               />
             </div>
 
-            <div className="w-1/2 space-y-2">
+            <div className="w-1/2 sm:w-1/3 space-y-2">
               <button
                 type="submit"
-                className="w-full p-3 mt-6 border-none text-lg bg-red-950/30 backdrop-blur-xs rounded-lg hover:bg-opacity-70 hover:scale-105 transform transition-all duration-300 ease-in-out"
+                className="w-full p-3 mt-6 border-none text-base sm:text-lg bg-red-950/30 backdrop-blur-sm rounded-lg hover:bg-opacity-70 hover:scale-105 transform transition-all duration-300 ease-in-out"
               >
                 {isEdit ? "Сохранить изменения" : "Создать вакансию"}
               </button>

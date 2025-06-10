@@ -7,7 +7,7 @@ const { generateContractDocx } = require("../utils/docGenerator");
 const SIGEX_URL = "https://sigex.kz";
 const { User, Contract } = require("../models"); 
 const { Op } = require("sequelize");
-const { createSignedPDFWithQRs } = require("../utils/signWithQr");
+const { createSignedPDFWithQRs } = require("../utils/signWithQR");
 
 function getNextStatus(currentStatus, role) {
   if (currentStatus === "draft" && role === "student") return "signedByUser";

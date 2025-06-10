@@ -4,7 +4,10 @@ const bcrypt = require("bcryptjs");
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    
+    const users = await queryInterface.sequelize.query(`SELECT COUNT(*) FROM "Users"`);
+    const count = parseInt(users[0][0].count, 10);
+
+    if (count === 0) {
       const hashedPassword = await bcrypt.hash("u4l1leg@cy@!", 10);
 
       await queryInterface.bulkInsert("Users", [
@@ -19,7 +22,7 @@ module.exports = {
           updatedAt: new Date(),
         },
       ]);
-    
+    }
   },
 
   down: async (queryInterface) => {

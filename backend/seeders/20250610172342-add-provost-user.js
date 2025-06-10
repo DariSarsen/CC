@@ -4,6 +4,13 @@ const bcrypt = require("bcryptjs");
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
+    // Выполняем запрос для проверки наличия пользователя с данным email
+    const [results] = await queryInterface.sequelize.query(
+      `SELECT id FROM "Users" WHERE email = 'provost.office@narxoz.kz';`
+    );
+
+    if (results.length === 0) {
+      // Если записи нет, хэшируем пароль и вставляем данные
       const hashedPassword = await bcrypt.hash("u4l1hjjg@cy@!", 10);
 
       await queryInterface.bulkInsert("Users", [
@@ -18,7 +25,9 @@ module.exports = {
           updatedAt: new Date(),
         },
       ]);
-    
+    } else {
+      console.log("Пользователь с email provost.office@narxoz.kz уже существует, вставка пропущена.");
+    }
   },
 
   down: async (queryInterface) => {

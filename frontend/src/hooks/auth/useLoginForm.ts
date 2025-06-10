@@ -18,7 +18,7 @@ export const useLoginForm = () => {
       await fetchUser(); 
 
       toast.success(data.message || "Успешно!");
-      navigate("/personal");
+      navigate("/news");
     } catch (err) {
       const errorMessage = (err as any)?.response?.data?.message || "Ошибка входа";
       toast.error(errorMessage);
