@@ -54,8 +54,8 @@ export const useCompanyProfile = () => {
     try {
       await upsertCompanyProfile(form);
       toast.success(isEdit ? "Профиль обновлен" : "Профиль создан");
-    } catch (error) {
-      toast.error("Ошибка при сохранении профиля");
+    } catch (error: any) {
+      toast.error(error.response?.data?.message || "Ошибка при сохранении профиля");
     }
   };
 
