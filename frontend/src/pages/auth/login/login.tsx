@@ -77,13 +77,15 @@ const Login = () => {
               Sign in
             </button>
           </div>
-          <div className="text-center">
-            <a href="/auth/forgot-password"
-              type="button"
-              className="text-gray-600 px-6 py-2 rounded-sm transition-all hover:text-red-700 underline">
-              Forgot your password?
+            <div className="text-center text-gray-600 px-6 py-2">
+            Если вы забыли пароль, обратитесь к администратору{" "}
+            <a
+              href="mailto:leg4cy1nk@gmail.com"
+              className="text-red-700 underline hover:text-red-900"
+            >
+              leg4cy1nk
             </a>
-          </div>
+            </div>
         </form>
       </div>
     </div>
