@@ -23,7 +23,7 @@ const VacancyListPage = () => {
       v.description.toLowerCase().includes(q)
     );
   });
-
+  console.log(vacancies)
   return (
     <div className="max-w-5xl mx-auto px-6 text-white mb-36">
 

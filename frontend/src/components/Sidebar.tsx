@@ -58,7 +58,7 @@ const Sidebar = () => {
             {role === "company" && (
             <li className="flex items-center gap-3 hover:text-red-300 transition-colors">
               <AiOutlineUser size={20}/>
-              <Link to={`/company/${user?.id}`}>Профиль</Link>
+              <Link to={`/company/`}>Профиль</Link>
             </li>
             )}
 

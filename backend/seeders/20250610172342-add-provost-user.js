@@ -4,16 +4,15 @@ const bcrypt = require("bcryptjs");
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    
-      const hashedPassword = await bcrypt.hash("u4l1leg@cy@!", 10);
+      const hashedPassword = await bcrypt.hash("u4l1hjjg@cy@!", 10);
 
       await queryInterface.bulkInsert("Users", [
         {
           id: Sequelize.literal('uuid_generate_v4()'),
-          email: "leg4cyl1nk@gmail.com",
+          email: "provost.office@narxoz.kz",
           password: hashedPassword,
-          name: "Legacy Link",
-          role: "admin",
+          name: "Provost Office",
+          role: "career_center",
           photo: '/uploads/users/default.jpg',
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -23,6 +22,6 @@ module.exports = {
   },
 
   down: async (queryInterface) => {
-    await queryInterface.bulkDelete("Users", { email: "leg4cyl1nk@gmail.com" });
+    await queryInterface.bulkDelete("Users", { email: "provost.office@narxoz.kz" });
   },
 };

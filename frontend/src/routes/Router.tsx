@@ -55,7 +55,7 @@ const AppRouter = () => (
             <Route path="/vacancies" element={<VacancyListPage />} />
             <Route path="/vacancies/:id" element={<VacancyDetailsPage />} />
             <Route path="/contracts" element={<ContractsPage />} />
-            <Route path="/company/:id" element={<CompanyProfileDetailPage />} />
+            <Route path="/company/:id?" element={<CompanyProfileDetailPage />} />
         </Route>
 
         <Route element={AccessStudentOrCenter}>
@@ -100,7 +100,7 @@ const AppRouter = () => (
 
     </Route>
 
-    {/* <Route path="*" element={<Navigate to="/" />} /> */}
+    <Route path="*" element={<Navigate to="/" />} />
   </Routes>
 
 );
