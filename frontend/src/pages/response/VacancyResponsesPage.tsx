@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
 import { useResponsesByVacancy } from "../../hooks/vacancyResponses/useResponsesByVacancy";
 import LoadingScreen from "../../components/LoadingScreen";
@@ -19,6 +19,7 @@ const VacancyResponsesPage = () => {
       toast.error("Ошибка обновления статуса");
     }
   };
+  console.log(responses)
 
   const filteredResponses = responses.filter((r) => r.status === selectedStatus);
 
@@ -83,8 +84,13 @@ const VacancyResponsesPage = () => {
             <ul className="space-y-6">
               {filteredResponses.map((response) => (
                 <li key={response.id} className="bg-white/10 p-5 rounded-xl shadow-md border border-white border-opacity-10">
+                  <Link to={`/resumes/${response.User?.Resume?.id}`}>
+                    <p className="text-lg hover:underline">
+                      <strong>Соискатель:</strong> {response.User?.name}
+                    </p>
+                  </Link>
                   <p className="text-lg">
-                    <strong>Соискатель:</strong> {response.User?.name ?? "Без имени"}
+                    <strong>Email:</strong> {response.User?.email}
                   </p>
                   <p className="mt-2">
                     <strong>Письмо:</strong> {response.coverLetter}

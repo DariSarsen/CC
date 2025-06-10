@@ -1,7 +1,7 @@
 import axiosInstance from "../api/axiosInstance";
 import { VacancyResponse, VacancyResponseStatus } from "../types/vacancyResponse";
 
-const API_URL = "/responses"; // относительный путь (лучше для продакшена)
+const API_URL = "/responses";
 
 export const createVacancyResponse = async (
   vacancyId: string,

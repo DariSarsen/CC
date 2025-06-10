@@ -15,6 +15,7 @@ export interface Experience {
   }
   
   export interface Resume {
+    id?: string,
     experience: Experience[];
     skills: Skill[];
     languages: Language[];

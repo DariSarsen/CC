@@ -1,4 +1,4 @@
-const {VacancyResponse, Vacancy} = require("../models");
+const { User, VacancyResponse, Vacancy, Resume } = require("../models");
 
 exports.createResponse = async (req, res) => {
   try {
@@ -40,12 +40,18 @@ exports.getResponsesByVacancy = async (req, res) => {
     const vacancyId = req.params.vacancyId;
 
     const responses = await VacancyResponse.findAll({
-      where: { vacancyId },
-      include: ["User"],
-    });
+        where: { vacancyId },
+        include: {model: User, attributes: ["id", "name", "email", "photo"],
+          include: {model: Resume, attributes: [
+            "id"
+          ]},
+        },
+      },
+    );
 
     res.json(responses);
   } catch (error) {
+    console.error(error)
     res.status(500).json({ message: "Ошибка при получении откликов", error });
   }
 };

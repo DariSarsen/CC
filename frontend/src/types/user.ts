@@ -1,4 +1,5 @@
 import { CompanyProfile } from "./companyProfile";
+import { Resume } from "./resume";
 
 export interface User {
   id: string;
@@ -7,6 +8,7 @@ export interface User {
   role: "student" | "company" | "career_center" | "admin";
   photo?: string;
   CompanyProfile?: CompanyProfile | null;
+  Resume?: Resume | null;
 }
 
 export interface CreateUserPayload {
