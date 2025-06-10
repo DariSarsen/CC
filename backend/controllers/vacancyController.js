@@ -1,5 +1,21 @@
 const { Vacancy, User }= require("../models");
 
+exports.getVacancies = async (req, res) => {
+  try {
+    const limit = req.query.limit ? parseInt(req.query.limit) : undefined;
+
+    const vacancies = await Vacancy.findAll({
+      include: { model: User, attributes: ["id", "name", "email", "photo"] },
+      order: [["createdAt", "DESC"]],
+      ...(limit ? { limit } : {}),
+    });
+    res.json(vacancies);
+  } catch (error) {
+    console.error("Ошибка при получении списка вакансий:", error);
+    res.status(500).json({ message: "Ошибка сервера" });
+  }
+};
+
 exports.createVacancy = async (req, res) => {
   try {
     if (req.user.role !== "company") {
@@ -20,19 +36,6 @@ exports.createVacancy = async (req, res) => {
     res.status(201).json(vacancy);
   } catch (error) {
     console.error("Ошибка при создании вакансии:", error);
-    res.status(500).json({ message: "Ошибка сервера" });
-  }
-};
-
-exports.getVacancies = async (req, res) => {
-  try {
-    const vacancies = await Vacancy.findAll({
-      include: { model: User, attributes: ["id", "name", "email"] },
-      order: [["createdAt", "DESC"]],
-    });
-    res.json(vacancies);
-  } catch (error) {
-    console.error("Ошибка при получении списка вакансий:", error);
     res.status(500).json({ message: "Ошибка сервера" });
   }
 };

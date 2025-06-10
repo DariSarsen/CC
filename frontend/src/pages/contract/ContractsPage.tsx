@@ -3,7 +3,7 @@ import { format } from "date-fns";
 import { downloadContract } from "../../services/contractService";
 import { Link } from "react-router-dom";
 import { useSignContract } from "../../hooks/contract/useSignContract";
-
+import LoadingScreen from "../../components/LoadingScreen";
 import { FaTrash, FaFileDownload, FaFileSignature } from "react-icons/fa";
 import { TiDocumentAdd } from "react-icons/ti";
 
@@ -39,7 +39,7 @@ const ContractsPage = () => {
 
       <div className="bg-white/90 backdrop-blur-md text-black rounded-xl p-6 shadow-lg overflow-x-auto">
         {loading ? (
-          <p>Загрузка...</p>
+          <LoadingScreen />
         ) : contracts.length === 0 ? (
           <p>Договоров нет.</p>
         ) : (

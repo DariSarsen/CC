@@ -1,50 +1,57 @@
 import { useCompanyProfiles } from "../../../hooks/com-profile/useCompanyProfiles";
 import { Link } from "react-router-dom";
+import LoadingScreen from "../../../components/LoadingScreen";
 
 const CompanyProfileListPage = () => {
   const { users, loading } = useCompanyProfiles();
 
-  if (loading) return <p>Загрузка...</p>;
+  if (loading) return <LoadingScreen />;
 
   return (
-    <div>
-      <h2>База партнеров</h2>
-      <table style={{ width: "100%", borderCollapse: "collapse" }}>
-        <thead>
-          <tr>
-            <th>Почта</th>
-            <th>Имя</th>
-            <th>Компания</th>
-            <th>Телефон</th>
-            <th>БИН</th>
-            <th>Практика</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user) => (
-            <tr key={user.id}>
-              
-              <td>{user.email ?? "—"}</td>
-              <td>{user.name ?? "—"}</td>
-              <td>
-                {user.CompanyProfile?
-                <Link to={`/company/${user.CompanyProfile?.id}`}>
-                  {user.CompanyProfile?.companyName}
-                </Link>
-                :
-                "—"
-                }
-              </td>
-              <td>{user.CompanyProfile?.phone  ?? "—"}</td>
-              <td>{user.CompanyProfile?.BIN  ?? "—"}</td>
-              <td>{user.CompanyProfile?.canProvideInternship ? "✅" : "❌"}</td>
-              
+    <div className="max-w-6xl mx-auto p-6 bg-white/10 backdrop-blur-xl shadow-lg rounded-lg">
+      <h2 className="text-2xl font-bold mb-4 text-white text-center">База партнеров</h2>
+      <div className="overflow-x-auto rounded-2xl">
+        <table className="w-full bg-white ">
+          <thead>
+            <tr className="bg-blue-400 text-white">
+              <th className="p-3 border border-gray-300">Почта</th>
+              <th className="p-3 border border-gray-300">Имя</th>
+              <th className="p-3 border border-gray-300">Компания</th>
+              <th className="p-3 border border-gray-300">Телефон</th>
+              <th className="p-3 border border-gray-300">БИН</th>
+              <th className="p-3 border border-gray-300">Практика</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {users.map((user) => (
+              <tr key={user.id} className="hover:bg-gray-100">
+                <td className="p-3 border border-gray-300">{user.email ?? "—"}</td>
+                <td className="p-3 border border-gray-300">{user.name ?? "—"}</td>
+                <td className="p-3 border border-gray-300">
+                  {user.CompanyProfile ? (
+                    <Link
+                      to={`/company/${user.CompanyProfile?.id}`}
+                      className="text-blue-600 hover:underline"
+                    >
+                      {user.CompanyProfile?.companyName}
+                    </Link>
+                  ) : (
+                    "—"
+                  )}
+                </td>
+                <td className="p-3 border border-gray-300">{user.CompanyProfile?.phone ?? "—"}</td>
+                <td className="p-3 border border-gray-300">{user.CompanyProfile?.BIN ?? "—"}</td>
+                <td className="p-3 border border-gray-300 text-center text-lg">
+                  {user.CompanyProfile?.canProvideInternship ? "✅" : "❌"}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
+
 
 export default CompanyProfileListPage;

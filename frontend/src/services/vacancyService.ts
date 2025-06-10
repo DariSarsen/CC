@@ -27,7 +27,8 @@ export const getMyVacancies = async (): Promise<Vacancy[]> => {
   return data;
 };
 
-export const getAllVacancies = async (): Promise<Vacancy[]> => {
-  const { data } = await axiosInstance.get(API_URL);
+export const getAllVacancies = async (limit?:number): Promise<Vacancy[]> => {
+  const url = limit ? `${API_URL}?limit=${limit}` : API_URL;
+  const { data } = await axiosInstance.get(url);
   return data;
 };

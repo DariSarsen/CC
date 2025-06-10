@@ -4,6 +4,7 @@ import AccessGuard from "./AccessGuard";
 import Home from "../pages/home/home";
 import Login from "../pages/auth/login/login";
 import Personal from "../pages/home/personal";
+import NewsPage from "../pages/home/newsPage";
 
 import UserTablePage from "../pages/admin/userTable/UserTablePage";
 import StatsPage from "../pages/stats/StatsPage";
@@ -49,6 +50,7 @@ const AppRouter = () => (
     <Route element={<Layout />}>
 
         <Route element={AccessAll}>
+            <Route path="/news" element={<NewsPage />} />
             <Route path="/personal" element={<Personal />} />
             <Route path="/vacancies" element={<VacancyListPage />} />
             <Route path="/vacancies/:id" element={<VacancyDetailsPage />} />

@@ -16,9 +16,9 @@ const VacancyResponse = db.define("VacancyResponse", {
     allowNull: false,
     defaultValue: "pending", 
   },
-}, {
-  tableName: "vacancy_responses",
-  timestamps: true,
+  
+  createdAt: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+  updatedAt: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
 });
 
 module.exports = VacancyResponse;

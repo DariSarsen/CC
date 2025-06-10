@@ -50,7 +50,7 @@ export const useCompanyProfileById = (id?: string) => {
     setLoading(true);
     getCompanyProfileById(id)
       .then((data) => setProfile(data))
-      .catch(() => toast.error("Ошибка при загрузке профиля компании"))
+      .catch((err) => err.status==404 ? toast.error("У вас еще нет профиля. Заполните, пожалуйста") : toast.error("Ошибка при загрузке профиля компании"))
       .finally(() => setLoading(false));
   }, [id]);
 

@@ -43,7 +43,7 @@ const NotificationListPage = () => {
 
                 <div className="absolute bottom-0 left-0 right-0 p-5 bg-linear-to-t from-black via-black/70 to-transparent text-white z-10 text-shadow-lg/30">
                   <h2 className="text-xl font-semibold">{n.title}</h2>
-                  <p className="text-sm">{new Date(n.created_at || "").toLocaleString()}</p>
+                  <p className="text-sm">{new Date(n.createdAt || "").toLocaleString()}</p>
                 </div>
 
                 <div className="absolute inset-0 bg-black/50 backdrop-blur-xs opacity-0 group-hover:opacity-100 text-white p-4 transition-opacity duration-300 flex flex-col justify-center items-center text-center space-y-4 z-20">
@@ -59,7 +59,7 @@ const NotificationListPage = () => {
             ) : (
               <div className="flex flex-col bg-red-950/60 backdrop-blur-md text-white p-6 min-h-64 rounded-xl">
                 <h2 className="text-xl font-semibold break-words text-shadow-lg/10">{n.title}</h2>
-                <p className="text-sm mb-4">{new Date(n.created_at || "").toLocaleString()}</p>
+                <p className="text-sm mb-4">{new Date(n.createdAt || "").toLocaleString()}</p>
                 <p className="text-md line-clamp-3">{n.content}</p>
                 <Link
                   to={`/notifications/${n.id}`}

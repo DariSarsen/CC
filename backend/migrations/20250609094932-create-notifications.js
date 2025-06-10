@@ -8,8 +8,8 @@ module.exports = {
       title: { type: Sequelize.TEXT, allowNull: false },
       content: { type: Sequelize.TEXT, allowNull: false },
       imageUrl: { type: Sequelize.STRING },
-      created_at: Sequelize.DATE,
-      updated_at: Sequelize.DATE,
+      createdAt: Sequelize.DATE,
+      updatedAt: Sequelize.DATE,
     });
   },
   async down(queryInterface) {

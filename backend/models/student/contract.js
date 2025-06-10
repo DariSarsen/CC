@@ -53,9 +53,10 @@ const Contract = sequelize.define("Contract", {
     type: DataTypes.STRING,
     allowNull: true,
   },
-}, {
-  tableName: "contracts",
-  timestamps: true,
+  
+  createdAt: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+  updatedAt: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
 });
+
 
 module.exports = Contract;

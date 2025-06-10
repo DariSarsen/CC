@@ -2,14 +2,20 @@ const { Notification } = require("../models");
 const fs = require("fs");
 const path = require("path");
 
-exports.getAllNotifications = async (req, res) => {
+exports.getNotifications = async (req, res) => {
   try {
-    const notifications = await Notification.findAll({ order: [["created_at", "DESC"]] });
+    const limit = req.query.limit ? parseInt(req.query.limit) : undefined;
+    const notifications = await Notification.findAll({
+      order: [["createdAt", "DESC"]],
+      ...(limit ? { limit } : {}),
+    });
+
     res.json(notifications);
   } catch (err) {
     res.status(500).json({ error: "Ошибка при загрузке оповещений" });
   }
 };
+
 
 exports.createNotification = async (req, res) => {
   const { title, content } = req.body;

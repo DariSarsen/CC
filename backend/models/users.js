@@ -13,8 +13,11 @@ const User = db.define("User", {
   photo: { type: DataTypes.STRING, defaultValue: "/uploads/users/default.jpg"},
 
   loginAttempts: { type: DataTypes.INTEGER, defaultValue: 0 }, 
-  blockedUntil: { type: DataTypes.DATE, allowNull: true, defaultValue: null } 
- 
+  blockedUntil: { type: DataTypes.DATE, allowNull: true, defaultValue: null },
+  
+  createdAt: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+  updatedAt: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
 });
+
 
 module.exports = User;

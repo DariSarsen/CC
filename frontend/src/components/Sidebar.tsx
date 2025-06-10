@@ -51,14 +51,16 @@ const Sidebar = () => {
             {/* Home */}
             <li className="flex items-center gap-3 hover:text-red-300 transition-colors">
               <AiOutlineHome size={20}/>
-              <Link to="/personal">Главная</Link>
+              <Link to="/news">Главная</Link>
             </li>
 
             {/* profile */}
+            {role === "company" && (
             <li className="flex items-center gap-3 hover:text-red-300 transition-colors">
               <AiOutlineUser size={20}/>
-              <Link to="/personal">Профиль</Link>
+              <Link to={`/company/${user?.id}`}>Профиль</Link>
             </li>
+            )}
 
             {/* Vacancies */}
             <li className="flex items-center gap-3 hover:text-red-300 transition-colors">
@@ -104,13 +106,13 @@ const Sidebar = () => {
             )}
             
             {/* компании */}
-            {role === "career_canter" && (
+            {role === "career_center" && (
               <li className="flex items-center gap-3 hover:text-red-300 transition-colors">
                 <FaRegHandshake size={20}/>
                 <Link to="/companies">База партнеров</Link>
               </li>
             )}
-
+            
             {/* contracts */}
               <li className="flex items-center gap-3 hover:text-red-300 transition-colors">
                 <IoDocumentTextOutline size={20}/>
@@ -126,10 +128,10 @@ const Sidebar = () => {
             )}
 
             {/* settings */}
-            {/* <li className="flex items-center gap-3 hover:text-red-300 transition-colors">
+            <li className="flex items-center gap-3 hover:text-red-300 transition-colors">
             <AiOutlineSetting size={20}/>
-            <Link to="/settings">Настройки</Link>
-            </li> */}
+            <Link to="/personal">Настройки</Link>
+            </li>
 
           </ul>
 

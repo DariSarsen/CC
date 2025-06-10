@@ -17,8 +17,9 @@ export const updateResume = async (formData: Resume) => {
   await axiosInstance.put(API_URL, formData);  
 };
 
-export const fetchResumes = async (): Promise<ResumeWithUser[]> => {
-  const { data } = await axiosInstance.get<ResumeWithUser[]>(API_URL);  
+export const fetchResumes = async (limit?:number): Promise<ResumeWithUser[]> => {
+  const url = limit ? `${API_URL}?limit=${limit}` : API_URL;
+  const { data } = await axiosInstance.get<ResumeWithUser[]>(url);  
   return data;
 };
 

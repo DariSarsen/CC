@@ -19,10 +19,9 @@ const Notification = sequelize.define("Notification", {
     type: DataTypes.STRING, 
     allowNull: true,
   },
-}, {
-  timestamps: true,
-  updatedAt: "updated_at",
-  createdAt: "created_at",
+  createdAt: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+  updatedAt: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+
 });
 
 module.exports = Notification;

@@ -3,8 +3,9 @@ import { Notification } from "../types/notification";
 
 const API_URL = "http://localhost:3000/notifications";
 
-export const getNotifications = async (): Promise<Notification[]> => {
-  const { data } = await axiosInstance.get(API_URL); 
+export const getNotifications = async (limit?: number): Promise<Notification[]> => {
+  const url = limit ? `${API_URL}?limit=${limit}` : API_URL;
+  const { data } = await axiosInstance.get(url); 
   return data;
 };
 

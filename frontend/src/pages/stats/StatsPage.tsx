@@ -6,13 +6,14 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import LoadingScreen from "../../components/LoadingScreen";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const StatsPage = () => {
   const { data, loading } = useStats();
 
-  if (loading) return <div className="text-white p-5">Загрузка...</div>;
+  if (loading) return <LoadingScreen />;
   if (!data) return <div className="text-white p-5">Ошибка загрузки данных</div>;
 
   const { users, notifications, vacancies, responses } = data;

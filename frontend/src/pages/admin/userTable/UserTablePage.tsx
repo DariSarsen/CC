@@ -5,6 +5,7 @@ import { useDeleteUser } from "../../../hooks/admin/useDeleteUser";
 import EditUserModal from "../../../components/EditUserModal";
 import CreateUserModal from "../../../components/СreateUserModal";
 import { User } from "../../../types/user";
+import LoadingScreen from "../../../components/LoadingScreen";
 
 const roles = [
   { value: "all", label: "All Users" },
@@ -79,7 +80,7 @@ const UserTablePage = () => {
         {/* Table */}
         <div className="overflow-x-auto">
           {loading ? (
-            <p>Загрузка...</p>
+            <LoadingScreen />
           ) : (
             <table className="w-full text-sm text-left">
               <thead>

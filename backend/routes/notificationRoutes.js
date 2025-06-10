@@ -6,7 +6,7 @@ const upload = require("../middlewares/uploadMiddleware");
 
 router.use(authMiddleware());
 
-router.get("/", notificationController.getAllNotifications);
+router.get("/", notificationController.getNotifications);
 router.get("/:id", notificationController.getNotificationById);
 
 router.post("/", authMiddleware("career_center"), upload.single("image"), notificationController.createNotification);

@@ -20,7 +20,7 @@ const NotificationDetailsPage = () => {
             {notification.title}
           </h1>
           <p className="text-sm text-red-200">
-            Создано: {new Date(notification.created_at || "").toLocaleString()}
+            Создано: {new Date(notification.createdAt || "").toLocaleString()}
           </p>
         </div>
         

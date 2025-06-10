@@ -29,7 +29,6 @@ export interface Experience {
       email: string;
     };
   }
-  
 
   export const defaultResume: Resume = {
     experience: [],

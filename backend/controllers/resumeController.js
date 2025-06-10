@@ -1,5 +1,21 @@
 const { User, Resume } = require("../models");
 
+exports.getResumes = async (req, res) => {
+    try {
+        const limit = req.query.limit ? parseInt(req.query.limit) : undefined;
+
+        const resumes = await Resume.findAll({ 
+            include: User,
+            order: [["updatedAt", "DESC"]],
+            ...(limit ? { limit } : {}),
+        });
+        res.json(resumes);
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({ message: "Ошибка сервера", error });
+    }
+};
+
 exports.upsertResume = async (req, res) => {
     try {
         const { experience, skills, languages, additionalInfo } = req.body;
@@ -56,14 +72,6 @@ exports.getMyResume = async (req, res) => {
     }
 };
 
-exports.getResumes = async (req, res) => {
-    try {
-        const resumes = await Resume.findAll({ include: User });
-        res.json(resumes);
-    } catch (error) {
-        res.status(500).json({ message: "Ошибка сервера", error });
-    }
-};
 
 exports.deleteResume = async (req, res) => {
     try {
