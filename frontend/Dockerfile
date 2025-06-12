@@ -1,20 +1,21 @@
 # Используем Node.js 22
 FROM node:22
 
-# Задаём рабочую директорию
-WORKDIR /frontend
+# Устанавливаем рабочую директорию внутри контейнера
+WORKDIR /app
 
-# Копируем package.json и package-lock.json (если есть)
-COPY frontend/package*.json ./
+# Копируем package.json и package-lock.json
+# Префикс 'frontend/' убран
+COPY package*.json ./
 
 # Устанавливаем зависимости
 RUN npm install
 
 # Копируем весь код фронтенда
-COPY frontend ./
+COPY . .
 
-# Открываем порт для фронтенда
-EXPOSE 80
+# Открываем порт для фронтенда (соответствует порту в docker-compose.yml)
+EXPOSE 5173
 
-# Команда для запуска в режиме разработки (подгоните под ваш стартап-скрипт, если требуется)
+# Команда для запуска в режиме разработки
 CMD ["npm", "run", "dev"]
